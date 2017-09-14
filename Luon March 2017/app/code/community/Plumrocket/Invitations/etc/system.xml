@@ -1,0 +1,441 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <plumrocket>
+            <label>
+            <![CDATA[
+                <div style="padding-left:22px; background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NEIxMEIyRkRCOTg1MTFFMkI4Qjg5OEZGNjcwRUQ4MDciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NEIxMEIyRkVCOTg1MTFFMkI4Qjg5OEZGNjcwRUQ4MDciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0QjEwQjJGQkI5ODUxMUUyQjhCODk4RkY2NzBFRDgwNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo0QjEwQjJGQ0I5ODUxMUUyQjhCODk4RkY2NzBFRDgwNyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PoBY2kYAAAJCSURBVHjaJFJNaxVBEOzu2cfDZPflkSgkfsSP5CKBoBeDigeRgIgk4MWDePemqJHgBwgiCEFB9C94CkYMEuK/iF4CXgJ6UCOikBCyb6a7rVmX3WVmt6e6qrr49VppHknYXYMFFcfFzUXmRCROxmzsbPguhVpPqYcjLGSm7oRCIzo1fP/XztrG1grhlJMzBSUTKkyBnYFQDCCs8HRbB6aG539s7nz9ewhgaEa5hZuKqFtMFBvw5JyUcHBqdGFnW4Pb8b031HJHM6+N8Fc0Zky8NbFGVyv2FScmBq9CSNnfnmg/6vOhVKOUHVhqYi7RoAfA7oZ1ujD+kkk6AwPGUva3Th95nARlnBENHmhuB4IEk9QmB6+NVuegcmt7izVA2367MrJn0jOzrASQDoopgr0Gqc6PPYNNuNFPgmViZd/02Cs1VvWknm2HdkhXpWPdS2bRLcE2WILGkk3mQTk5NnS5hwYGl2CRwqPwZNo//3z74cu937sb5Fp1ugz7g3vA2d7s0TeSigTFWYOKJX2w2vKYrk8urq7P/6m/gVfV6ZRl2alKzznws4fnUnKpQcms0zf+9GKtKvdWik/flz6uP9ze3QQdwTBJBqouBnpmZL5qH+S7y232XiIOTguzemc5PJ+p5963VCjAGP6fJWlCZXkLeDR6MYPR2c13jO3tpZZmniE2M04IRcKAPCKYiQrKFtGtRc4YjIApkkmBJGqCR9lG48B1s0JR0dMaAc3posaBPIM8daMsVBpmMLiwHPhI/k+AAQDYqY0eXeLHAgAAAABJRU5ErkJggg==) left 50% no-repeat;">Plumrocket Inc.</div> ]]>
+            </label>
+            <class>plumrocket_section</class>
+            <sort_order>101</sort_order>
+        </plumrocket>
+    </tabs> 
+    <sections>
+        <invitations translate="label" >
+            <label>Invitations</label>
+            <tab>plumrocket</tab>
+            <sort_order>1500</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>1</expanded>
+                    <fields>
+                        <version translate="label">
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>invitations/system_config_version</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </version>
+                        <enabled translate="label">
+                            <label>Enable Extension</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <serial translate="label">
+                            <label>Serial Key</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>plumbase/system_config_form_field</frontend_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[
+                                Your can find <strong>Serial Key</strong> in your account at <a target="_blank" href="https://store.plumrocket.com/downloadable/customer/products/">store.plumrocket.com</a>. For manual <a target="_blank" href="http://wiki.plumrocket.com/wiki/License_Installation">click here</a>.
+                            ]]></comment>
+                        </serial>
+                    </fields>
+                </general>
+                <invitee translate="label">
+                    <label>Invitation Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <show_referral_link translate="label">
+                            <label>Show Referral Link</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_referral_link>
+                        <referral_link translate="label">
+                            <label>Referral Link</label>
+                            <frontend_type>text</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[<span id="referral-url" style="white-space: nowrap;"></span>
+                                <script type="text/javascript">
+                                    function changeReferralUrl()
+                                    {
+                                        var e   = document.getElementById('referral-url');
+                                        var input   = document.getElementById('invitations_invitee_referral_link');
+                                        
+                                        var v   = getPath(input);
+                                        
+                                        var bUrl = BLANK_URL.substring(0, BLANK_URL.indexOf('/js/blank.html'));
+                                        //alert(bUrl);
+                                        if (!v || v == '/')
+                                            v = '/invitations/index/accept/';
+                                        
+                                        if (v[v.length - 1] != '/')
+                                            v += '/';
+                                        
+                                        v = v.toLowerCase();
+                                        
+                                        e.innerHTML = bUrl+v+'{id}';
+
+                                    };
+                                    
+                                    function getPath(e)
+                                    {
+                                        var p = e.value;
+                                        var np = '';
+                                        var success = true;
+                                        for(i = 0; i < p.length; i++)
+                                        {
+                                            if (p[i].match(/^[a-zA-Z]/) || p[i].match(/^[0-9]/) || p[i] == '/' || p[i] == '-' || p[i] == '_'   ) 
+                                                np += p[i];
+                                            else
+                                                success = false;
+                                        }
+                                        
+                                        if (np.length && np[0] != '/')
+                                        {
+                                            np = '/' + p;
+                                            success = false;
+                                        }
+
+                                            
+                                        if (!success)
+                                            e.value = np;
+                                        
+                                        return np;
+                                    }
+                                    
+                                    changeReferralUrl();
+                                    document.getElementById('invitations_invitee_referral_link').onkeyup = changeReferralUrl;
+                                
+                                </script>]]></comment>  
+                        </referral_link>
+                        <invitations_via_shares translate="label">
+                            <label>Allow Invitations From All Website Urls</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment> Customers will be able to refer friends, not only using the "referral link" but through sharing the product, category or static page links. All invitees will become referrals.</comment>
+                        </invitations_via_shares>
+                        <invitation_per_one translate="label">
+                            <label>Prevent Multiple Invitations</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>If set to "YES", the same user cannot be invited by multiple customers or guests. Useful when sending coupon codes instead of reward points.</comment>
+                        </invitation_per_one>
+                        <send_limit translate="label">
+                            <label>Invitation Limit</label>
+                            <frontend_type>text</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Format of limit: "emails number/number of minutes".<br/>
+E.g. Set "10/5" to prevent a user from sending more than 10 emails per 5 minutes.<br/>
+Leave empty to disable this restriction.]]></comment>
+                        </send_limit>
+                    </fields>
+                </invitee>
+                <email translate="label">
+                    <label>Invitation Email (Sent to Invitee)</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <email_from_store translate="label">
+                            <label>Send Invitations From</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>invitations/system_config_source_sendfrom</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </email_from_store>
+                        <template translate="label">
+                            <label>Email Template</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Template should be used only to define custom html layout, styles, images and banners.</comment>
+                        </template>
+                        <subject translate="label">
+                            <label>Email Subject</label>
+                            <frontend_type>text</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>                            
+                        </subject>
+                        <text translate="label">
+                            <label>Default Email Body</label>
+                            <frontend_type>textarea</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Default email subject and body will be included in your invitation email template. You can use two variables - {{referral_link}} and {{customer_name}}.</comment>
+                        </text>
+                        <edit_invitee_text translate="label">
+                            <label>Allow Customers To Edit Default Email Body</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </edit_invitee_text>
+
+                        <coupon_rule translate="label">
+                            <label>Send Coupon Code</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>invitations/system_config_source_coupon</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Select Shopping Cart Price Rule that should be used to award invited users.</comment>
+                        </coupon_rule>
+                    </fields>
+                </email>
+
+                <invitation_confirmation_email translate="label">
+                    <label>Invitation Confirmation Email (Sent to Inviter)</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>35</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Send Accept Invitation Notification</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Set to "YES" to notify the customer when someone accepts his/her invitation.</comment>
+                        </enabled>
+                        <term translate="label">
+                            <label>Send Invitation Confirmation After</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>invitations/system_config_source_acceptemailwhen</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </term>
+                        <template translate="label">
+                            <label>Email Template</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </template>
+                        <reward_point translate="label">
+                            <label>Enable Reward Points</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>invitations/system_config_rewardpoint</frontend_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </reward_point>
+                        <coupon_rule translate="label">
+                            <label>Send Coupon Code</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>invitations/system_config_source_coupon</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Select Shopping Cart Price Rule that should be used to award customer who sent the invitation.</comment>
+                        </coupon_rule>
+                    </fields>
+                </invitation_confirmation_email>
+
+                <promo_page translate="label">
+                    <label>Invite Friends Promotion Page</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>40</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Enable Promotion Page</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>
+                                <![CDATA[If enabled, the page "<span id="promo-url" style="white-space: nowrap;">/invitations/promo/</span>"<br/> is accessible.
+                                <script type="text/javascript">
+                                    var e = document.getElementById('promo-url');
+                                    var bUrl = BLANK_URL.substring(0, BLANK_URL.indexOf('/js/blank.html'));
+                                    //alert(bUrl);
+                                    e.innerHTML = bUrl+e.innerHTML
+
+                                </script>]]>
+                            </comment>
+                        </enabled>
+                        <meta_title translate="label">
+                            <label>Meta Title</label>
+                            <frontend_type>text</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </meta_title>
+                        <meta_keywords translate="label">
+                            <label>Meta Keywords</label>
+                            <frontend_type>text</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </meta_keywords>
+                        <meta_description translate="label">
+                            <label>Meta Description</label>
+                            <frontend_type>textarea</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </meta_description>
+                        
+                        
+                        <title translate="label">
+                            <label>Page Title</label>
+                            <frontend_type>text</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title>
+                        <description translate="label">
+                            <label>Page Description</label>
+                            <frontend_type>textarea</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </description>
+                        
+                        <bg_image translate="label comment">
+                            <label>Background Image</label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">invitations</upload_dir>
+                            <base_url type="media" scope_info="1">invitations</base_url>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </bg_image>
+                        
+                        <guest_invites translate="label">
+                            <label>Guests Can Invite Friends</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Allow unregistered users to invite friends from promo page</comment>
+                        </guest_invites>    
+                        <validate_guest_ownership translate="label">
+                            <label>Validate Guest Email Ownership</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Guest users will be asked to confirm ownership of the email address used to invite friends only when they decide to register actual store account.</comment>
+                        </validate_guest_ownership>             
+                        <guest_verification_email_template translate="label">
+                            <label>Guest Verification Email Template</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>When guest user registers an account, automatic email is sent to confirm his ownership of the email address and transfer invites from guest profile to registered user profile.</comment>
+                        </guest_verification_email_template>
+                    </fields>
+                </promo_page>
+            </groups>
+        </invitations>
+        <rewards translate="label">
+            <groups>
+                <invitations_credits translate="label">
+                    <label>Invitation Points</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>25</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>1</expanded>
+                    <fields>
+
+                    </fields>
+                </invitations_credits>
+            </groups>
+        </rewards>
+    </sections>
+</config>

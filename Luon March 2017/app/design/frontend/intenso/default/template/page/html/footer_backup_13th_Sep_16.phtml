@@ -1,0 +1,194 @@
+<?php
+/**
+ * Intenso Premium Theme
+ *
+ * @category    design
+ * @package     intenso_default
+ * @copyright   Copyright (c) 2014-2016 Itactica (http://www.itactica.com)
+ * @license     http://getintenso.com/license
+ */
+?>
+<?php $helper = Mage::helper('itactica_intenso'); ?>
+<footer class="main-footer">
+	<div class="back-to-top-container show-for-small-only">
+		<a href="#" class="back-to-top"><?php echo $this->__('Back to Top'); ?></a>
+	</div>
+	<ul class="mobile-footer-links show-for-small-only">
+		<?php echo $this->getChildHtml('cms_footer_for_mobile') ?>
+	</ul>
+	<?php if ($helper->showFooterRibbon()): ?>
+		<div class="row newsletter-ribbon<?php if(!Mage::getStoreConfig('intenso/footer/mobile_newsletter',
+				Mage::app()->getStore()) && !Mage::getStoreConfig('intenso/footer/mobile_social',
+				Mage::app()->getStore())): ?> hide-for-small-only<?php endif; ?>">
+			<div class="small-12 medium-6 columns<?php if(!Mage::getStoreConfig('intenso/footer/mobile_newsletter',
+				Mage::app()->getStore())): ?> hide-for-small-only<?php endif; ?>">
+				<?php if (Mage::getStoreConfig('intenso/footer/newsletter',
+					Mage::app()->getStore())): ?>
+					<?php echo $this->getChildHtml("newsletter"); ?>
+				<?php else: ?>
+					<?php echo $this->getChildHtml('cms_footer_top_left') ?>
+				<?php endif; ?>
+			</div>
+			<div class="small-12 medium-6 columns social<?php if(!Mage::getStoreConfig('intenso/footer/mobile_social',
+				Mage::app()->getStore())): ?> hide-for-small-only<?php endif; ?>">
+				<?php echo $this->getChildHtml('cms_footer_top_right') ?>
+			</div>
+		</div>
+	<?php endif; ?>
+	<div class="row footer-links hide-for-small-only">
+		<?php $columns = $helper->mainFooterColumnCount(); ?>
+		<?php if (!$columns) $columns = 1; ?>
+		<?php $columnSize = 12 / $columns; ?>
+		<?php if (Mage::getModel('cms/block')->load('footer_main_first_column')->getIsActive()): ?>
+			<div class="medium-<?php echo $columnSize; ?> columns">
+				<?php echo $this->getChildHtml('cms_footer_first_column') ?>
+			</div>
+		<?php endif; ?>
+		<?php if (Mage::getModel('cms/block')->load('footer_main_second_column')->getIsActive()): ?>
+			<div class="medium-<?php echo $columnSize; ?> columns">
+				<?php echo $this->getChildHtml('cms_footer_second_column') ?>
+			</div>
+		<?php endif; ?>
+		<?php if (Mage::getModel('cms/block')->load('footer_main_third_column')->getIsActive()): ?>
+			<div class="medium-<?php echo $columnSize; ?> columns">
+				<?php echo $this->getChildHtml('cms_footer_third_column') ?>
+			</div>
+		<?php endif; ?>
+		<?php if (Mage::getModel('cms/block')->load('footer_main_fourth_column')->getIsActive()): ?>
+			<div class="medium-<?php echo $columnSize; ?> columns">
+				<?php echo $this->getChildHtml('cms_footer_fourth_column') ?>
+			</div>
+		<?php endif; ?>
+		<?php if (Mage::getModel('cms/block')->load('footer_links')->getIsActive()): ?>
+			<div class="medium-12 h-links-list columns">
+				<?php echo $this->getChildHtml('cms_footer_links') ?>
+			</div>
+		<?php endif; ?>
+	</div>
+	<?php if ($helper->mobileFooterSwitches()): ?>
+		<div class="mobile-footer-switch show-for-small-only row">
+			<?php
+			$switchCount = 0;
+			if ($this->getChildHtml('store_switcher') && $helper->mobileStoreSwitch()) $switchCount++;
+			if ($this->getChildHtml('store_language') && $helper->mobileLanguageSwitch()) $switchCount++;
+			if ($this->getChildHtml('currency_selector') && $helper->mobileCurrencySelector()) $switchCount++;
+			if ($switchCount == 0) $switchCount = 1;
+			$rowCount = 12 / $switchCount;
+			?>
+			<?php if ($this->getChildHtml('store_switcher') && $helper->mobileStoreSwitch()): ?>
+				<div class="small-<?php echo $rowCount; ?> columns">
+					<?php echo $this->getChildHtml('store_switcher') ?>
+				</div>
+			<?php endif; ?>
+			<?php if ($this->getChildHtml('store_language') && $helper->mobileLanguageSwitch()): ?>
+				<div class="small-<?php echo $rowCount; ?> columns">
+					<?php echo $this->getChildHtml('store_language') ?>
+				</div>
+			<?php endif; ?>
+			<?php if ($this->getChildHtml('currency_selector') && $helper->mobileCurrencySelector()): ?>
+				<div class="small-<?php echo $rowCount; ?> columns">
+					<?php echo $this->getChildHtml('currency_selector') ?>
+				</div>
+			<?php endif; ?>
+		</div>
+	<?php endif; ?>
+	<div class="row footer-bottom">
+		<div class="medium-5 columns">
+			<p class="sosumi no-margin"><?php echo $this->getCopyright() ?></p>
+		</div>
+		<div class="medium-2 center hide-for-small-only columns">
+			<a href="#" class="back-to-top"><?php echo $this->__('Back to Top'); ?></a>
+		</div>
+		<div class="medium-5 hide-for-small-only columns">
+			<?php echo $this->getChildHtml('cms_footer_bottom_right') ?>
+		</div>
+	</div>
+</footer>
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    	if (matchMedia("screen and (min-width: 642px)").matches) {
+    //var secoundlevelli = jQuery('.nav-2-2.has-dropdown .dropdown').html();
+    //alert(secoundlevelli);
+    // note the comma in the alert shows separate phrases
+    var phrases = [];
+    var phrasess = [];
+    var phrasesk = [];
+     var phrasesl = [];
+    var currentclass="";
+    var currentachor="";
+    var currentclass1="";
+    var currentachor1="";
+    var i = 0;
+    var k = 0;
+    var l = 0;
+    var p = 0;
+   
+    
+   jQuery(".nav-1-1.has-dropdown .dropdown li").each(function() {
+     currentclass = jQuery(this).attr('class');
+     currentachor = jQuery(this).html();
+    var newlist =  "<li class='"+currentclass+"'>"+currentachor+"</li>";
+    if(i==2 || i==10 || i==18 || i==26 || i==34 || i==42 || i==50 || i==58 || i==66 || i==74 || i==82 || i==90 || i==98){
+      newlist = "<div class='column-8'><ul>"+newlist;   
+    }
+    if(i==9 || i==17 || i==25 || i==33 || i==41 || i==49 || i==57 || i==65 || i==73 || i==81 || i==89 || i==97){
+      newlist = newlist+"</ul></div>";   
+    }
+    
+    
+     //alert(current);  
+    phrases += newlist;
+    //console.log(newlist+i );  
+    i++;
+  }); 
+if(i > 10){
+ jQuery(".nav-1-1.has-dropdown .dropdown").html("");
+ jQuery(".nav-1-1.has-dropdown .dropdown").html(phrases);   
+}
+
+   jQuery(".nav-2-1.has-dropdown .dropdown li").each(function() {
+     currentclass1 = jQuery(this).attr('class');
+     currentachor1 = jQuery(this).html();
+    var newlist =  "<li class='"+currentclass1+"'>"+currentachor1+"</li>";
+    if(k==2 || k==14 || k==26 || k==38 || k==50 || k==62 || k==74 || k==86 || k==98 || k==110 || k==122){
+      newlist = "<div class='column-12'><ul>"+newlist;   
+    }
+    if(k==13 || k==25 || k==25 || k==37 || k==49 || k==61 || k==73 || k==85 || k==97 || k==109 || k==121){
+      newlist = newlist+"</ul></div>";   
+    }
+    //alert('');
+    
+     //alert(current);  
+    phrasess += newlist;
+    //console.log(newlist+i );  
+    k++;
+  }); 
+if(k > 14){
+ jQuery(".nav-2-1.has-dropdown .dropdown").html("");
+ jQuery(".nav-2-1.has-dropdown .dropdown").html(phrasess);   
+}
+ jQuery(".nav-3-1.has-dropdown .dropdown li").each(function() {
+    
+     currentclass1 = jQuery(this).attr('class');
+     currentachor1 = jQuery(this).html();
+    var newlist =  "<li class='"+currentclass1+"'>"+currentachor1+"</li>";
+    if(l==2 || l==14 || l==26 || l==38 || l==50 || l==62 || l==74 || l==86 || l==98 || l==110 || l==122){
+      newlist = "<div class='column-12'><ul>"+newlist;   
+    }
+    if(l==13 || l==25 || l==25 || l==37 || l==49 || l==61 || l==73 || l==85 || l==97 || l==109 || l==121){
+      newlist = newlist+"</ul></div>";   
+    }
+    //alert('');
+    
+     //alert(current);  
+    phrasesl += newlist;
+    //console.log(newlist+i );  
+    l++;
+  }); 
+if(l > 14){
+ jQuery(".nav-3-1.has-dropdown .dropdown").html("");
+ jQuery(".nav-3-1.has-dropdown .dropdown").html(phrasesl);   
+}
+}
+});
+</script>

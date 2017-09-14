@@ -1,0 +1,155 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * @extension   Remmote_Facebookpixelremarketing
+ * @author      Remmote    
+ * @copyright   2016 - Remmote.com
+ * @descripion  Module config
+ */
+-->
+<config>
+    <modules>
+        <Remmote_Facebookpixelremarketing>
+            <version>1.1.0</version>
+        </Remmote_Facebookpixelremarketing>
+    </modules>
+
+    <frontend>
+        <layout>
+            <updates>
+                <remmote_facebookpixelremarketing>
+                    <file>remmote_facebookpixelremarketing.xml</file>
+                </remmote_facebookpixelremarketing>
+            </updates>
+        </layout>
+
+        <events>
+            <checkout_cart_product_add_after>
+                <observers>
+                    <remmote_facebookpixelremarketing_logpixeladdtocart>
+                        <class>remmote_facebookpixelremarketing/observer</class>
+                        <method>logPixelAddToCart</method>
+                    </remmote_facebookpixelremarketing_logpixeladdtocart>
+                </observers>
+            </checkout_cart_product_add_after>
+
+            <wishlist_add_product>
+                <observers>
+                    <remmote_facebookpixelremarketing_logpixeladdtowishlist>
+                        <class>remmote_facebookpixelremarketing/observer</class>
+                        <method>logPixelAddToWishlist</method>
+                    </remmote_facebookpixelremarketing_logpixeladdtowishlist>
+                </observers>
+            </wishlist_add_product>
+
+            <sales_quote_payment_import_data_before>
+                <observers>
+                    <remmote_facebookpixelremarketing_logpixelpaymentinfo>
+                        <class>remmote_facebookpixelremarketing/observer</class>
+                        <method>logPixelPaymentInfo</method>
+                    </remmote_facebookpixelremarketing_logpixelpaymentinfo>
+                </observers>
+            </sales_quote_payment_import_data_before>
+
+            <sales_order_place_after>
+                <observers>
+                    <remmote_facebookpixelremarketing_logpixelpurchase>
+                        <class>remmote_facebookpixelremarketing/observer</class>
+                        <method>logPixelPurchase</method>
+                    </remmote_facebookpixelremarketing_logpixelpurchase>
+                </observers>
+            </sales_order_place_after>
+
+            <newsletter_subscriber_save_before>
+                <observers>
+                    <remmote_facebookpixelremarketing_logpixelcompleteregistrationnewsletter>
+                        <class>remmote_facebookpixelremarketing/observer</class>
+                        <method>logPixelCompleteRegistrationNewsletter</method>
+                    </remmote_facebookpixelremarketing_logpixelcompleteregistrationnewsletter>
+                </observers>
+            </newsletter_subscriber_save_before>
+
+            <customer_register_success>
+                <observers>
+                    <remmote_facebookpixelremarketing_logpixelcompleteregistration>
+                        <class>remmote_facebookpixelremarketing/observer</class>
+                        <method>logPixelCompleteRegistration</method>
+                    </remmote_facebookpixelremarketing_logpixelcompleteregistration>
+                </observers>
+            </customer_register_success>
+
+        </events>
+    </frontend> 
+
+    <global>
+        <helpers>
+            <remmote_facebookpixelremarketing>
+                <class>Remmote_Facebookpixelremarketing_Helper</class>
+            </remmote_facebookpixelremarketing>
+        </helpers>
+        <models>
+            <remmote_facebookpixelremarketing>
+                <class>Remmote_Facebookpixelremarketing_Model</class>
+            </remmote_facebookpixelremarketing>
+        </models>
+        <blocks>
+            <remmote_facebookpixelremarketing>
+                <class>Remmote_Facebookpixelremarketing_Block</class>
+            </remmote_facebookpixelremarketing>
+        </blocks>
+
+        <resources>
+            <remmote_facebookpixelremarketing_setup>
+                <setup>
+                    <module>Remmote_Facebookpixelremarketing</module>
+                    <class>Mage_Catalog_Model_Resource_Setup</class>
+                </setup>
+            </remmote_facebookpixelremarketing_setup>
+        </resources>
+    </global>
+
+     <!-- Setting up cronjobs -->
+    <crontab>
+        <jobs>
+            <remmote_facebookpixelremarketing_exportcatalog>
+                <run><model>remmote_facebookpixelremarketing/observer::export_catalog</model></run>
+            </remmote_facebookpixelremarketing_exportcatalog>
+        </jobs>
+    </crontab>
+    <!-- End setting up cronjobs -->
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Remmote_Facebookpixelremarketing before="Mage_Adminhtml">Remmote_Facebookpixelremarketing_Adminhtml</Remmote_Facebookpixelremarketing>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <!-- Admin panel sections -->
+    <adminhtml>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <remmote_facebookpixelremarketing>
+                                            <title>Facebook Pixel Remarketing Extension</title>
+                                        </remmote_facebookpixelremarketing>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+</config>

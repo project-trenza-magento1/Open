@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Trenza_Customshipping>
+      <version>1.0</version>
+    </Trenza_Customshipping>
+  </modules>
+  
+	<frontend>
+		<routers>
+            <callout>
+                <use>standard</use>
+                <args>
+                    <module>Trenza_Customshipping</module>
+                    <frontName>customshipping</frontName>
+                </args>
+            </callout>
+        </routers>
+		
+		<layout>
+            <updates>
+                <customshipping>
+                    <file>customshipping.xml</file>
+                </customshipping>
+            </updates>
+        </layout>	
+	</frontend>
+  
+  
+	<global>
+		<models>
+			<customshipping>
+				<class>Trenza_Customshipping_Model</class>
+			</customshipping>
+		</models>
+		<helpers>
+			<customshipping>
+				<class>Trenza_Customshipping_Helper</class>
+			</customshipping>
+		</helpers>	
+		
+		<blocks>
+			<customshipping>
+				<class>Trenza_Customshipping_Block</class>
+			</customshipping>
+		</blocks>
+		
+		<events>
+			<!--<sales_quote_save_before>
+				<observers>
+                    <sales_quote_save_after>
+                        <type>singleton</type>
+                        <class>customshipping/observer</class>
+                        <method>saveShippingMethod</method>
+                    </sales_quote_save_after>
+                </observers>
+			</sales_quote_save_before>-->
+			
+			<sales_model_service_quote_submit_after>
+				<observers>
+                    <sales_model_service_quote_submit_after>
+                        <type>singleton</type>
+                        <class>customshipping/observer</class>
+                        <method>saveShippingMethodOrder</method>
+                    </sales_model_service_quote_submit_after>
+                </observers>
+			</sales_model_service_quote_submit_after>
+
+			
+		</events>
+		
+	</global>
+  
+	<default>
+		<carriers>
+			<customshipping>
+				<active>1</active>				
+				<model>customshipping/all</model>
+				<title>Available Shipping Method</title>
+				<sallowspecific>0</sallowspecific>
+			</customshipping>
+		</carriers>
+	</default>
+  
+  
+</config>

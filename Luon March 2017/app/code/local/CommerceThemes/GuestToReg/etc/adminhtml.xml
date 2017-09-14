@@ -1,0 +1,62 @@
+<?xml version="1.0"?><!--
+/**
+ * CommerceThemes_GuestToReg
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the H&O Commercial License
+ * that is bundled with this package in the file LICENSE_HO.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.h-o.nl/license
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to info@h-o.com so we can send you a copy immediately.
+ *
+ * @category    CommerceThemes
+ * @package     CommerceThemes_GuestToReg
+ * @copyright   Copyright © 2012 H&O (http://www.h-o.nl/)
+ * @license     H&O Commercial License (http://www.h-o.nl/license)
+ * @author      Paul Hachmang – H&O <info@h-o.nl>
+ *
+ * 
+ */
+-->
+
+<config>
+    <menu>
+        <customer>
+            <children>
+                <guesttoreg_adminform translate="title" module="GuestToReg">
+                    <title>Guests To Registered Customers</title>
+                    <action>GuestToReg/adminhtml_GuestToRegForm</action>
+                </guesttoreg_adminform>
+            </children>
+        </customer>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <customer>
+                        <children>
+                            <guesttoreg_adminform>
+                                <title>Guests To Registered Customers</title>
+                            </guesttoreg_adminform>
+                        </children>
+                    </customer>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <guesttoreg>
+                                        <title>Guests To Registered Customers Settings</title>
+                                    </guesttoreg>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

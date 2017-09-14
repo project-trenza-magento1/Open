@@ -1,0 +1,429 @@
+<?xml version="1.0"?>
+<config>
+
+	<modules>
+		<Plumrocket_Rewards>
+			<wiki>http://wiki.plumrocket.com/wiki/Magento_Reward_Points_Extension_v1.x</wiki>
+			<version>1.5.2</version>
+		</Plumrocket_Rewards>
+	</modules>
+
+	<crontab>
+        <jobs>
+            <plumrocket_rewards_removeExpiredPoints>
+                <schedule><cron_expr>5 0 * * *</cron_expr></schedule>
+                <run><model>rewards/cron::removeExpiredPoints</model></run>
+            </plumrocket_rewards_removeExpiredPoints>
+            <plumrocket_rewards_pointsBalanceNotifications>
+                <schedule><cron_expr>0,15,30,45 * * * *</cron_expr></schedule>
+                <run><model>rewards/cron::pointsBalanceNotifications</model></run>
+            </plumrocket_rewards_pointsBalanceNotifications>
+            <plumrocket_rewards_pointsExpirationNotifications>
+                <schedule><cron_expr>0 4 * * *</cron_expr></schedule>
+                <run><model>rewards/cron::pointsExpirationNotifications</model></run>
+            </plumrocket_rewards_pointsExpirationNotifications>
+        </jobs>
+    </crontab>
+
+	<frontend>
+		<routers>
+			<rewards>
+				<use>standard</use>
+				<args>
+					<module>Plumrocket_Rewards</module>
+					<frontName>rewards</frontName>
+				</args>
+			</rewards>
+		</routers>
+		<layout>
+			<updates>
+				<rewards>
+					<file>rewards.xml</file>
+				</rewards>
+			</updates>
+		</layout>
+		<translate>
+            <modules>
+                <Plumrocket_Rewards>
+                    <files>
+                        <default>Plumrocket_Rewards.csv</default>
+                    </files>
+                </Plumrocket_Rewards>
+            </modules>
+        </translate>
+	</frontend>
+
+	<global>
+
+		<helpers>
+			<rewards>
+				<class>Plumrocket_Rewards_Helper</class>
+			</rewards>
+		</helpers>
+
+		<blocks>
+			<rewards>
+				<class>Plumrocket_Rewards_Block</class>
+			</rewards>
+		</blocks>
+
+		<models>
+            <rewards>
+                <class>Plumrocket_Rewards_Model</class>
+                <resourceModel>rewards_mysql4</resourceModel>
+            </rewards>
+            <rewards_mysql4>
+                <class>Plumrocket_Rewards_Model_Mysql4</class>
+                <entities>
+					<history>
+                        <table>rewards_history</table>
+                    </history>
+                    <points>
+                        <table>rewards_points</table>
+                    </points>
+                </entities>
+            </rewards_mysql4>
+            <sales>
+				<rewrite>
+					<quote>Plumrocket_Rewards_Model_Sales_Quote</quote>
+				</rewrite>
+			</sales>
+			<salesrule>
+				<rewrite>
+					<validator>Plumrocket_Rewards_Model_SalesRule_Validator</validator>
+				</rewrite>
+			</salesrule>
+        </models>
+
+        <fieldsets>
+            <sales_convert_quote_address>
+                <rpdiscount_amount><to_order>*</to_order></rpdiscount_amount>
+                <base_rpdiscount_amount><to_order>*</to_order></base_rpdiscount_amount>
+                <tax_rpdiscount_amount><to_order>*</to_order></tax_rpdiscount_amount>
+                <base_tax_rpdiscount_amount><to_order>*</to_order></base_tax_rpdiscount_amount>
+            </sales_convert_quote_address>
+        </fieldsets>
+
+		<!-- <sales>
+		            <quote>
+		                <totals>
+		                    <ernpoints>
+		                        <class>rewards/sales_quote_address_total_earn</class>
+		                        <after>grand</after>
+		                    </ernpoints>
+		                </totals>
+		            </quote>
+		        </sales> -->
+
+
+		<events>
+
+			<sales_quote_collect_totals_after>
+				<observers>
+					<rewards_sales_quote_collect_totals_after>
+						<type>singleton</type>
+						<class>rewards/observer</class>
+						<method>salesQuoteAddressCollectTotalsAfter</method>
+					</rewards_sales_quote_collect_totals_after>
+				</observers>
+			</sales_quote_collect_totals_after>
+
+			<sales_order_place_before>
+				<observers>
+					<rewards_sales_order_place_before>
+						<type>singleton</type>
+						<class>rewards/observer</class>
+						<method>salesOrderPlaceBefore</method>
+					</rewards_sales_order_place_before>
+				</observers>
+			</sales_order_place_before>
+
+			<order_cancel_after>
+				<observers>
+					<rewards_order_cancel_after>
+						<type>singleton</type>
+						<class>rewards/observer</class>
+						<method>orderCancelAfter</method>
+					</rewards_order_cancel_after>
+				</observers>
+			</order_cancel_after >
+
+			<sales_order_creditmemo_refund>
+				<observers>
+					<rewards_sales_order_creditmemo_refund>
+						<class>rewards/observer</class>
+						<method>salesOrderCreditmemoRefund</method>
+					</rewards_sales_order_creditmemo_refund>
+				</observers>
+			</sales_order_creditmemo_refund>
+
+			<invitations_invitee_customer_first_order>
+				<observers>
+					<rewards_invitations_invitee_customer_first_order>
+						<type>singleton</type>
+						<class>rewards/observer</class>
+						<method>invitationsInviteeCustomerFirstOrder</method>
+					</rewards_invitations_invitee_customer_first_order>
+				</observers>
+			</invitations_invitee_customer_first_order>
+
+			<invitations_invitee_accept>
+				<observers>
+					<rewards_invitations_invitee_accept>
+						<type>singleton</type>
+						<class>rewards/observer</class>
+						<method>invitationsInviteeAccept</method>
+					</rewards_invitations_invitee_accept>
+				</observers>
+			</invitations_invitee_accept>
+
+			<checkout_cart_save_after>
+				<observers>
+					<rewards_checkout_cart_save_after>
+						<type>singleton</type>
+						<class>rewards/observer</class>
+						<method>recalculateActivated</method>
+					</rewards_checkout_cart_save_after>
+				</observers>
+			</checkout_cart_save_after>
+
+			<customer_register_success>
+				<observers>
+					<rewards_customer_register_success>
+						<type>singleton</type>
+						<class>rewards/observer</class>
+						<method>customerRegisterSuccess</method>
+					</rewards_customer_register_success>
+				</observers>
+			</customer_register_success>
+
+			<sales_order_place_after>
+				<observers>
+					<rewards_sales_order_place_after>
+						<type>singleton</type>
+						<class>rewards/observer</class>
+						<method>salesOrderPlaceAfter</method>
+					</rewards_sales_order_place_after>
+				</observers>
+			</sales_order_place_after>
+
+			<!--
+			<sales_order_save_commit_after>
+                 <observers>
+                     <rewards_sales_order_save_commit_after>
+                         <type>singleton</type>
+                         <class>rewards/observer</class>
+                         <method>salesOrderSaveCommitAfter</method>
+                     </rewards_sales_order_save_commit_after>
+                 </observers>
+             </sales_order_save_commit_after>
+         	-->
+         	<sales_order_invoice_register>
+                 <observers>
+                     <rewards_sales_order_invoice_register>
+                         <type>singleton</type>
+                         <class>rewards/observer</class>
+                         <method>salesOrderInvoiceRegister</method>
+                     </rewards_sales_order_invoice_register>
+                 </observers>
+             </sales_order_invoice_register>
+
+             <review_save_after>
+                <observers>
+                    <rewards_review_save_after>
+                        <class>rewards/observer</class>
+                        <method>reviewSaveAfter</method>
+                    </rewards_review_save_after>
+                </observers>
+            </review_save_after>
+
+
+            <adminhtml_sales_order_create_process_data_before>
+            	<observers>
+                    <rewards_adminhtml_sales_order_create_process_data_before>
+                        <class>rewards/observer</class>
+                        <method>adminOrderCreateProcess</method>
+                    </rewards_adminhtml_sales_order_create_process_data_before>
+                </observers>
+            </adminhtml_sales_order_create_process_data_before>
+		</events>
+
+		<resources>
+            <rewards_setup>
+                <setup>
+                    <module>Plumrocket_Rewards</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </rewards_setup>
+            <rewards_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </rewards_write>
+            <rewards_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </rewards_read>
+        </resources>
+
+        <template>
+            <email>
+                <rewards_notification_points_balance_email_template translate="label" module="rewards">
+                    <label>Points balance</label>
+                    <file>plumrocket/rewards/points_balance.html</file>
+                    <type>html</type>
+                </rewards_notification_points_balance_email_template>
+                <rewards_notification_points_expiration_email_template translate="label" module="rewards">
+                    <label>Points expiration</label>
+                    <file>plumrocket/rewards/points_expiration.html</file>
+                    <type>html</type>
+                </rewards_notification_points_expiration_email_template>
+            </email>
+        </template>
+   </global>
+
+   <default>
+        <rewards>
+            <general>
+				<enabled>0</enabled>
+            </general>
+            <points_redemption>
+				<min_redeemable_credit>0</min_redeemable_credit>
+				<max_redeemable_credit>50</max_redeemable_credit>
+				<redeem_points_rate>10</redeem_points_rate>
+				<with_coupon_code>1</with_coupon_code>
+            </points_redemption>
+            <order_credits>
+				<earn_points_rate>1</earn_points_rate>
+            </order_credits>
+            <registration_credits>
+				<credits>10</credits>
+            </registration_credits>
+            <reviews_credits>
+				<credits>0</credits>
+            </reviews_credits>
+            <notification>
+        		<points_balance_email_template>rewards_notification_points_balance_email_template</points_balance_email_template>
+        		<points_expiration_email_template>rewards_notification_points_expiration_email_template</points_expiration_email_template>
+        		<points_expiration_email_before>5</points_expiration_email_before>
+        	</notification>
+        </rewards>
+        <sales>
+            <totals_sort>
+                <rpdiscount>20</rpdiscount>
+            </totals_sort>
+        </sales>
+
+    </default>
+	 <admin>
+		<routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<Plumrocket_Rewards_Adminhtml after="Mage_Adminhtml">Plumrocket_Rewards_Adminhtml</Plumrocket_Rewards_Adminhtml>
+					</modules>
+				</args>
+			</adminhtml>
+		</routers>
+	</admin>
+	<adminhtml>
+        <events>
+            <controller_action_postdispatch_adminhtml_customer_save>
+                <observers>
+                    <rewards_controller_action_postdispatch_adminhtml_customer_save>
+                        <class>rewards/observer</class>
+                        <method>adminhtmlCustomerSave</method>
+                    </rewards_controller_action_postdispatch_adminhtml_customer_save>
+                </observers>
+            </controller_action_postdispatch_adminhtml_customer_save>
+        </events>
+		<menu>
+			<plumrocket>
+				<title>Plumrocket</title>
+				<sort_order>80</sort_order>
+				<children>
+					<rewards>
+						<title>Reward Points</title>
+						<sort_order>240</sort_order>
+						<children>
+							<clients_points>
+								<title>Manage Customer Points</title>
+								<sort_order>1</sort_order>
+								<action>adminhtml/rewards_points/index</action>
+							</clients_points>
+							<history>
+								<title>Reward Points History</title>
+								<sort_order>2</sort_order>
+								<action>adminhtml/rewards_history/index</action>
+							</history>
+							<config>
+								<title>Configuration</title>
+								<sort_order>3</sort_order>
+								<action>adminhtml/system_config/edit/section/rewards</action>
+							</config>
+						</children>
+					</rewards>
+				</children>
+			</plumrocket>
+		</menu>
+		<acl>
+			<resources>
+				<all>
+				    <title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<plumrocket>
+							<title>Plumrocket</title>
+							<sort_order>80</sort_order>
+							<children>
+								<rewards translate="title" module="rewards">
+									<title>Reward Points</title>
+									<sort_order>240</sort_order>
+									<children>
+										<clients_points translate="title">
+											<title>Manage Customer Points</title>
+											<sort_order>1</sort_order>
+										</clients_points>
+										<history>
+											<title>Reward Points History</title>
+											<sort_order>2</sort_order>
+										</history>
+										<config>
+											<title>Configuration</title>
+											<sort_order>3</sort_order>
+										</config>
+									</children>
+							   </rewards>
+							</children>
+						</plumrocket>
+						<system>
+							<children>
+								<config>
+									<children>
+										<rewards translate="title" module="rewards">
+                                            <title>Plumrocket Reward Points Settings</title>
+                                        </rewards>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+
+
+		<layout>
+			<updates>
+				<rewards>
+				    <file>rewards.xml</file>
+				</rewards>
+			</updates>
+		</layout>
+	</adminhtml>
+
+</config>

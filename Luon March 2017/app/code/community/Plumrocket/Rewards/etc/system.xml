@@ -1,0 +1,354 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <plumrocket>
+            <label>
+            <![CDATA[
+                <div style="padding-left:22px; background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NEIxMEIyRkRCOTg1MTFFMkI4Qjg5OEZGNjcwRUQ4MDciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NEIxMEIyRkVCOTg1MTFFMkI4Qjg5OEZGNjcwRUQ4MDciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0QjEwQjJGQkI5ODUxMUUyQjhCODk4RkY2NzBFRDgwNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo0QjEwQjJGQ0I5ODUxMUUyQjhCODk4RkY2NzBFRDgwNyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PoBY2kYAAAJCSURBVHjaJFJNaxVBEOzu2cfDZPflkSgkfsSP5CKBoBeDigeRgIgk4MWDePemqJHgBwgiCEFB9C94CkYMEuK/iF4CXgJ6UCOikBCyb6a7rVmX3WVmt6e6qrr49VppHknYXYMFFcfFzUXmRCROxmzsbPguhVpPqYcjLGSm7oRCIzo1fP/XztrG1grhlJMzBSUTKkyBnYFQDCCs8HRbB6aG539s7nz9ewhgaEa5hZuKqFtMFBvw5JyUcHBqdGFnW4Pb8b031HJHM6+N8Fc0Zky8NbFGVyv2FScmBq9CSNnfnmg/6vOhVKOUHVhqYi7RoAfA7oZ1ujD+kkk6AwPGUva3Th95nARlnBENHmhuB4IEk9QmB6+NVuegcmt7izVA2367MrJn0jOzrASQDoopgr0Gqc6PPYNNuNFPgmViZd/02Cs1VvWknm2HdkhXpWPdS2bRLcE2WILGkk3mQTk5NnS5hwYGl2CRwqPwZNo//3z74cu937sb5Fp1ugz7g3vA2d7s0TeSigTFWYOKJX2w2vKYrk8urq7P/6m/gVfV6ZRl2alKzznws4fnUnKpQcms0zf+9GKtKvdWik/flz6uP9ze3QQdwTBJBqouBnpmZL5qH+S7y232XiIOTguzemc5PJ+p5963VCjAGP6fJWlCZXkLeDR6MYPR2c13jO3tpZZmniE2M04IRcKAPCKYiQrKFtGtRc4YjIApkkmBJGqCR9lG48B1s0JR0dMaAc3posaBPIM8daMsVBpmMLiwHPhI/k+AAQDYqY0eXeLHAgAAAABJRU5ErkJggg==) left 50% no-repeat;">Plumrocket Inc.</div> ]]>
+            </label>
+            <class>plumrocket_section</class>
+            <sort_order>101</sort_order>
+        </plumrocket>
+    </tabs> 
+    <sections>
+        <rewards translate="label" module="rewards">
+            <label>Reward Points</label>
+            <tab>plumrocket</tab>
+            <sort_order>1500</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>1</expanded>
+                    <fields>
+                        <version translate="label">
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>rewards/system_config_version</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </version>
+                        <enabled translate="label">
+                            <label>Enable Extension</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <serial translate="label">
+                            <label>Serial Key</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>plumbase/system_config_form_field</frontend_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[
+                                Your can find <strong>Serial Key</strong> in your account at <a target="_blank" href="https://store.plumrocket.com/downloadable/customer/products/">store.plumrocket.com</a>. For manual <a target="_blank" href="http://wiki.plumrocket.com/wiki/License_Installation">click here</a>.
+                            ]]></comment>
+                        </serial>
+                        <global_credits translate="label comment">
+                            <label>Global points</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Allow customer to use reward points across all stores on one website.</comment>
+                        </global_credits>
+                        <expiration translate="label comment">
+                            <label>Points expiration (days)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <can_be_empty>1</can_be_empty>
+                            <comment>Specify the number of days after reward points will expire. Enter "0" to disable this option.</comment>
+                        </expiration>
+                    </fields>
+                </general>
+                <notification translate="label">
+                    <label>Notifications</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>12</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>1</expanded>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Enable Notifications</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <points_balance_email_template translate="label">
+                            <label>Points balance email template</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </points_balance_email_template>
+                        <points_expiration_email_template translate="label">
+                            <label>Points expiration email template</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </points_expiration_email_template>
+                        <points_expiration_email_before translate="label comment">
+                            <label>Send email alert before points expiration (days)</label>
+                            <frontend_type>text</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>
+                                <![CDATA[Indicate how many days prior to Reward Points expiration the email notification will be sent.]]>  
+                            </comment>
+                        </points_expiration_email_before>
+                    </fields>
+                </notification>
+                <points_redemption translate="label">
+                    <label>Points Redemption</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>15</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <redeem_points_rate translate="label comment">
+                            <label>Points</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <can_be_empty>1</can_be_empty>
+                            <comment>
+                                <![CDATA[Points Redemption Rate = <span class="redeem_points_rate_val"></span>:1. Customer will use <span class="redeem_points_rate_val"></span> point(s) for each 1 "<span class="rCurrencyName">&nbsp;</span>" discount at shopping cart.]]>  
+                            </comment>
+                        </redeem_points_rate>
+                        <min_redeemable_credit translate="label">
+                            <label>Minimum points used per order</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </min_redeemable_credit>
+                        <max_redeemable_credit translate="label comment">
+                            <label>Maximum points used per order</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <can_be_empty>1</can_be_empty>
+                            <comment>Minimum / Maximum reward points balance that can be used at shopping cart. Enter "0" in both fields to remove any limits.</comment>
+                        </max_redeemable_credit>
+                        <with_coupon_code translate="label comment">
+                            <label>Use together with coupon codes</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Allow customers to use Reward Points and Coupon Codes at the same time.</comment>
+                        </with_coupon_code>
+                    </fields>
+                </points_redemption>
+                <order_credits translate="label">
+                    <label>Purchase Points</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <earn_points_rate translate="label comment">
+                            <label>Points</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <can_be_empty>1</can_be_empty>
+                            <comment>
+                                <![CDATA[Points Earning Rate = <span class="earn_points_rate_val"></span>:1. Customer will earn <span class="earn_points_rate_val"></span> point(s) for 1 "<span class="rCurrencyName">&nbsp;</span>" spent on purchase.<br/>Enter "0" to disable this reward.]]>
+                            </comment>
+                        </earn_points_rate>
+                        <include_tax translate="label">
+                            <label>Earn Points Based On Subtotal</label>
+                            <frontend_type>select</frontend_type>
+                            <backend_model>tax/config_price_include</backend_model>
+                            <source_model>tax/system_config_source_priceType</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </include_tax>
+                        <customer_groups translate="label comment">
+                            <label>Allow for Customer Groups</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_customer_group</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <can_be_empty>1</can_be_empty>
+                            <comment>
+                                <![CDATA[Selected customer groups will be able to earn points by purchasing products.]]>
+                            </comment>
+                        </customer_groups>
+                    </fields>
+                </order_credits>
+                <registration_credits translate="label">
+                    <label>Registration Points</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <restriction translate="label comment">
+                            <label>Who earns registration points</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>rewards/system_config_source_registrationPointsRestriction</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </restriction>
+                        <credits translate="label comment">
+                            <label>Points</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Reward points earned for each successful registration. Enter "0" to disable this reward.</comment>
+                        </credits>
+                    </fields>
+                </registration_credits>
+                
+                <reviews_credits translate="label">
+                    <label>Product Review Points</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>40</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <credits translate="label comment">
+                            <label>Points</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Reward points earned for each approved review. Enter "0" to disable this reward.</comment>
+                        </credits>
+                        <double_review translate="label comment">
+                            <label>Allow repeating reviews</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Allow customers to earn points for more than 1 review of the same product.</comment>
+                        </double_review>
+                        <only_for_buyers translate="label comment">
+                            <label>Only product buyers</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Restrict rewards to those customers who purchased product in the past.</comment>
+                        </only_for_buyers>
+                    </fields>
+                </reviews_credits>
+                <invitations_credits>
+                    <fields>
+                        <award_reason translate="label comment">
+                            <label>Award points reason</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>rewards/system_config_source_invitationsAwardReason</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </award_reason>
+                        <credits translate="label comment">
+                            <label>Points</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Reward points earned for each invitee. Enter "0" to disable this reward.</comment>
+                        </credits>
+                        <max_days translate="label comment">
+                            <label>Maximum days after registration</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Award reward points to inviter only if his invitee places his first order within "n" days after the registration with minimum order subtotal. Enter "0" in both fields to remove any limits.</comment>
+                        </max_days>
+                        <min_sub_total translate="label">
+                            <label>Minimum first order subtotal</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </min_sub_total>
+                    </fields>
+                </invitations_credits>
+            </groups>
+        </rewards>
+        <sales>
+            <groups>
+                <totals_sort>
+                    <fields>
+                        <rpdiscount translate="label">
+                            <label>Reward Points Discount</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </rpdiscount>
+                    </fields>
+                </totals_sort>
+            </groups>
+        </sales>
+    </sections>
+</config>

@@ -1,0 +1,117 @@
+<?php
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket_Reward_Points
+ * @copyright   Copyright (c) 2012 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+?>
+
+<?php //$currencySymbol = Mage::app()->getLocale()->currency(Mage::app()->getStore()->getCurrentCurrencyCode())->getSymbol(); ?> 
+<div id="plumrocket-ajax-load-area">
+	<h2 class="legend"><?php echo $this->__('Points History') ?></h2>
+	<?php $list = $this->getList(); ?>
+	<?php echo $this->getPagerHtml(); ?>
+	<?php if($list->getSize()) { ?>
+	<table class="data-table" id="rewards-history-table">
+		<col width="1" />
+		<col width="1" />
+		<col />
+		<col width="1" />
+		<col width="1" />
+		<col width="1" />
+		<?php
+			$haveExpire = false;
+			foreach($list as $item) {
+				if ($item->getPoints() >= 0 && $item->getExpireAt() != '0000-00-00'){
+					$haveExpire = true;
+					break;
+				}
+			}
+		?>
+		<thead>
+			<tr>
+				<th width="400px"><?php echo $this->__('Description') ?></th>
+				<th><?php echo $this->__('Points') ?></th>
+				<th><?php echo $this->__('Date') ?></th>
+				<?php if ($haveExpire) { ?>
+				<?php /*<th><?php echo $this->__('Expiry Date') ?></th>*/ ?>
+				<?php } ?>
+			</tr>
+		</thead>
+		<tbody>
+			<?php foreach($list as $item) { ?>
+			<tr>
+				<td><?php echo $this->helper('rewards')->getFrontendHistoryItemDescription($item) ?></td>
+				<td><?php $pointsCount = $item->getPoints(); echo ($pointsCount > 0) ? '+'.$pointsCount : '-'.(-$pointsCount) ?></td>
+				<td><?php echo date('M d, Y H:i',strtotime($item->getCreatedAt())) ?></td>
+				<?php /*if ($haveExpire) { ?>
+				<td><?php 
+					if ($pointsCount >= 0 && $item->getExpireAt() != '0000-00-00'){
+						echo date('M d, Y',strtotime($item->getExpireAt())) ;	
+					}
+				?></td>
+				<?php }*/ ?>
+			</tr>
+			<?php } ?>
+		</tbody>
+	</table>
+	<script type="text/javascript">decorateTable('rewards-history-table');</script>
+	<script>
+		setLocation = function(){};
+		pjQuery_1_10_2(document).ready(function(){
+
+			setAjaxPagerArea(pjQuery_1_10_2('#plumrocket-ajax-load-area'));
+			
+			function setAjaxPagerArea(area)
+			{
+				area.find('.pager a').each(function(){
+					pjQuery_1_10_2(this).click(function(){
+						loadAjaxPagerArea(pjQuery_1_10_2(this).attr('href'), area);
+						return false;
+					});
+				});
+				
+				area.find('.pager select').each(function(){
+					pjQuery_1_10_2(this).change(function(){
+						loadAjaxPagerArea(pjQuery_1_10_2(this).val(), area);
+						return false;
+					});
+				});
+			}
+			
+			function loadAjaxPagerArea(url, replaceArea)
+			{
+				pjQuery_1_10_2.ajax({
+					url			: '<?php echo $this->getUrl('rewards/index/history') ?>'+getAjaxPagerParams(url),
+					type		: 'POST',
+					dataType	: 'json',
+					success 	: function(data){
+						if (data.success)
+							replaceArea.replaceWith(data.result);
+					}
+				});
+			}
+		
+			function getAjaxPagerParams(url)
+			{
+				var arr = url.split('/');
+				return arr[arr.length - 1];
+			}
+		});
+	</script>
+
+	<?php echo $this->getPagerHtml(); ?>
+	<?php } else { ?>
+		<p><?php echo $this->__('You do not have any recorded point.'); ?></p>
+	<?php } ?>
+</div>

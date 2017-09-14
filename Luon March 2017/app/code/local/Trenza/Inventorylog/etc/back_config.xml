@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Trenza_Inventorylog>
+			<version>0.1.0</version>
+		</Trenza_Inventorylog>
+	</modules>
+	
+		<global>
+			<helpers>
+				<inventorylog>
+					<class>Trenza_Inventorylog_Helper</class>
+				</inventorylog>
+			</helpers>
+			<blocks>
+				<inventorylog>
+					<class>Trenza_Inventorylog_Block</class>
+				</inventorylog>
+			</blocks>			
+			
+			<models>
+				<inventorylog>
+					<class>Trenza_Inventorylog_Model</class>
+					<resourceModel>inventorylog_mysql4</resourceModel>
+				</inventorylog>
+
+				<inventorylog_mysql4>
+					<class>Trenza_Inventorylog_Model_Mysql4</class>
+					<entities>
+						<inventorylog>
+							<table>inventory_log</table>
+						</inventorylog>
+						
+					</entities>
+				</inventorylog_mysql4>
+
+			</models>
+		
+			
+			<resources>
+				<inventorylog_setup>
+					<setup>
+						<module>Trenza_Inventorylog</module>
+					</setup>
+					<connection>
+						<use>core_setup</use>
+					</connection>
+				</inventorylog_setup>
+			  <inventorylog_write>
+					<connection>
+						<use>core_write</use>
+					</connection>
+			  </inventorylog_write>
+			  <inventorylog_read>
+					<connection>
+						<use>core_read</use>
+					</connection>
+			  </inventorylog_read>
+			</resources>
+			
+			<events>
+				<sales_order_place_after>
+					<observers>
+						<inventorylog>
+							<class>inventorylog/observer</class>
+							<method>updateInventoryLogAfterOrderPlace</method>
+						</inventorylog>
+					</observers>
+				</sales_order_place_after>
+			</events>			
+		</global>
+		
+	<admin>
+		<routers>
+			<inventorylog>
+				<use>admin</use>
+				<args>
+					<module>Trenza_Inventorylog</module>
+					<frontName>inventorylog</frontName>
+				</args>
+			</inventorylog>
+		</routers>
+	</admin>
+
+	<adminhtml>
+		<menu>
+			<catalog>
+				<children>
+					<inventorylog translate="title" module="inventorylog">
+						<title>Inventory Log</title>
+						<sort_order>180</sort_order>
+							<action>inventorylog/adminhtml_inventorylog</action>
+					</inventorylog>				
+				</children>
+			</catalog>
+		</menu>
+		<layout>
+		  <updates>
+			<inventorylog>
+			  <file>inventorylog.xml</file>
+			</inventorylog>
+		  </updates>
+		</layout>
+	</adminhtml>
+</config> 

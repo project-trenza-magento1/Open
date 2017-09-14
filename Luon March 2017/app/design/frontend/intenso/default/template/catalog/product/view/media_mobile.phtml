@@ -1,0 +1,61 @@
+<?php
+/**
+ * Intenso Premium Theme
+ *
+ * @category    design
+ * @package     intenso_default
+ * @copyright   Copyright (c) 2014-2016 Itactica (http://www.itactica.com)
+ * @license     http://getintenso.com/license
+ */
+
+/**
+ * Product media data template
+ *
+ * @see Mage_Catalog_Block_Product_View_Media
+ */
+?>
+<?php
+    $_product = $this->getProduct();
+    $_helper = $this->helper('catalog/output');
+    $width = 500;
+    if (Mage::registry('media_mobile_image_size')) {
+        list($maxHeight, $resizeAsSquare, $baseImageSize) = Mage::registry('media_mobile_image_size');
+    } else {
+        $maxHeight = 500;
+        $baseImageSize = 1200;
+    }
+?>
+<div class="mobile-gallery">
+<?php if ($_product->getTypeId() == Mage_Catalog_Model_Product_Type::TYPE_BUNDLE) {
+						$baseurl = Mage::getStoreConfig(Mage_Core_Model_Url::XML_PATH_SECURE_URL);
+						/*
+						$price = $_product->getPrice();
+						$special = $_product->getSpecialPrice();
+						$final_price = $_product->getFinalPrice();
+						$price_main = (($price - $special)*100)/$price;
+						$Special_price = $_product->getSpecialPrice(); */
+						$price = $_product->getPrice();
+						$old_price = $_product->getData('specialpricebundle');
+						$offer_percentage = (($old_price - $price)*100)/$old_price; 
+						if($price < $old_price){
+						echo '<div class="intenso-product-label-wrapper position-top-right " style="margin-top: 8px;"><span class="intenso-product-label" style=" background-image: url('.$baseurl.'media/productlabel/image/c/i/circle-green.svg);color: #fff; padding: 19px; font-size: 16px; 
+font-weight: lighter;">Säästä<br>'.floor($offer_percentage).'%</span></div>';
+						}
+							
+						}
+						?>
+    <div class="product-label-placeholder" data-productid="<?php echo $_product->getId(); ?>" data-labelurl="<?php echo Mage::getBaseUrl(); ?>itactica-productlabel"></div>
+    <?php if (count($this->getGalleryImages()) > 0): ?>
+    <ul class="orbit-container" id="gallery-image-mobile" data-orbit data-options="animation:slide;animation_speed:600;timer:false;slide_number:false;variable_height:true;swipe:true;navigation_arrows:false;outside_bullets:true;">
+    <?php foreach ($this->getGalleryImages() as $_image): ?>
+        <?php if ($this->isGalleryImageVisible($_image)): ?>
+        <li class="item">
+            <a class="lightbox-mobile product-image" href="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $_image->getFile())->resize($baseImageSize); ?>">
+                <img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'medium_image', $_image->getFile())->resize($width,$maxHeight); ?>" alt="" width="<?php echo $width; ?>" height="<?php echo $maxHeight; ?>">
+            </a>
+        </li>
+        <?php endif; ?>
+    <?php endforeach; ?>
+    </ul>
+    <?php endif; ?>
+</div>

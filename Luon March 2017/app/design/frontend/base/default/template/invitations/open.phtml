@@ -1,0 +1,83 @@
+<?php
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket_Invitations
+ * @copyright   Copyright (c) 2012 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+?> 
+
+<?php if ( ($invitations = $this->getData('invitations')) && count($invitations) > 0) { ?>
+<div id="plumrocket-ajax-load-area">
+<form method="POST">
+<?php echo $this->getPagerHtml(); ?>
+<table class="data-table <?php echo Mage::getSingleton('core/design_package')->getPackageName() ?>-theme-account" id="open-invitations-table">
+    <col width="1" />
+    <col width="1" />
+    <col />
+    <col width="1" />
+    <col width="1" />
+    <col width="1" />
+    <thead>
+        <tr>
+            <th class="td_1"><input type='checkbox' onChange='toggleAll(this)' name='toggle_all' value=''></th>
+            <th class="td_2"><?php echo $this->__('To') ?></th>
+			<th class="td_3"><?php echo $this->__('Last Invitation sent') ?></th>
+            <th class="td_4"><?php echo $this->__('Number of times sent') ?></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($invitations as $invitation){ ?>
+		<tr>
+			<td class="td_1"><input name='invitation[<?php echo $invitation->getId(); ?>]' value='<?php echo $invitation->getId(); ?>' type='checkbox' /></td>
+			<td class="td_2"><div><?php echo htmlspecialchars($invitation->getInviteeName()) ?></div></td>
+			<td class="td_3"><?php echo date('m/d/y',strtotime($invitation->getUpdatedAt())) ?></td>
+			<td class="td_4"><?php echo htmlspecialchars($invitation->getSentCount()) ?></td>
+		</tr>
+		<?php } ?>
+		
+    </tbody>
+</table>
+<?php echo $this->getPagerHtml(); ?>
+<div class="h10 clearfix"></div>
+<button id="remove-open-invitations" type="button" title="Send Invitation" class="button btn-cart send-invitation"><span><span><?php echo $this->__('Remove Items'); ?></span></span></button>
+</form>
+	
+	<script type='text/javascript'>
+		pjQuery_1_10_2(document).ready(function(){
+			pjQuery_1_10_2('#remove-open-invitations').click(function(){
+				var form = pjQuery_1_10_2(this).parents('form:first');
+				pjQuery_1_10_2.ajax({
+					url : '<?php echo $this->getUrl('invitations/index/deleteOpenInvitations') ?>',
+					type : 'POST',
+					data : form.serialize(),
+					success : function(data){
+						pjQuery_1_10_2('#invitations-lists').html(data);
+						pInvitations.changeInvitationsListPagerLinks();
+					},
+				});
+			});
+		});
+	
+		function toggleAll(element) 
+		{
+			var value = pjQuery_1_10_2(element).is(':checked');
+			pjQuery_1_10_2(element).parents('form:first').find('input').prop('checked', value);
+	
+		}
+	</script>
+	
+<script type="text/javascript">decorateTable('open-invitations-table');</script>
+</div>
+<?php } else { ?>
+    <p class="empty-list"><?php echo $this->__('You do not have any invitations yet.'); ?></p>
+<?php } ?>

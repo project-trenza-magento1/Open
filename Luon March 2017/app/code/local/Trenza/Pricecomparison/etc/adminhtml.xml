@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<config>
+	<menu>
+		<catalog>
+			<children>
+				<pricecomparison translate="title" module="pricecomparison">
+					<title>Price Comparison</title>
+					<sort_order>180</sort_order>
+						<action>pricecomparison/adminhtml_pricecomparison</action>
+				</pricecomparison>				
+			</children>
+		</catalog>
+	</menu>
+	
+	
+	<acl>
+		<resources>
+			<all>
+				<title>Allow Everything</title>
+			</all>
+			<admin>
+				<children>
+					<catalog>
+						<children>
+							<pricecomparison translate="title" module="pricecomparison">
+								<title>Price Comparison</title>
+								<sort_order>180</sort_order>
+									<action>pricecomparison/adminhtml_pricecomparison</action>
+							</pricecomparison>				
+						</children>
+					</catalog>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+</config>

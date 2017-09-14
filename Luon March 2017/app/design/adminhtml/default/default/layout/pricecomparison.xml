@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    
+	<adminhtml_catalog_product_edit>
+		<reference name="product_tabs">
+			<action method="addTab">
+				<name>pricecomparison_tab</name>
+				<block>pricecomparison/adminhtml_catalog_product_tab</block>
+			</action>
+		</reference>
+	</adminhtml_catalog_product_edit>
+	
+	
+	
+	<pricecomparison_adminhtml_pricecomparison_index>
+        <reference name="content">
+            <block type="pricecomparison/adminhtml_pricecomparison" name="pricecomparison" />
+        </reference>
+    </pricecomparison_adminhtml_pricecomparison_index>
+	
+	<pricecomparison_adminhtml_pricecomparison_view>
+        <reference name="content">
+            <block type="pricecomparison/adminhtml_pricecomparison_edit" name="pricecomparison_edit" />
+        </reference>
+    </pricecomparison_adminhtml_pricecomparison_view>
+	
+</layout>

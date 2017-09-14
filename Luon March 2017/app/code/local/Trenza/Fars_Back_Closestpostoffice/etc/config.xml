@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Trenza_Closestpostoffice>
+      <version>1.0</version>
+    </Trenza_Closestpostoffice>
+  </modules>
+  
+	<!--<frontend>
+		<layout>
+            <updates>
+                <closestpostoffice>
+                    <file>closestpostoffice.xml</file>
+                </closestpostoffice>
+            </updates>
+        </layout>	
+	</frontend>-->
+  
+  
+	<global>
+		<models>
+			<closestpostoffice>
+				<class>Trenza_Closestpostoffice_Model</class>
+			</closestpostoffice>
+		</models>
+		<helpers>
+			<closestpostoffice>
+				<class>Trenza_Closestpostoffice_Helper</class>
+			</closestpostoffice>
+		</helpers>	
+		
+		<blocks>
+			<closestpostoffice>
+				<class>Trenza_Closestpostoffice_Block</class>
+			</closestpostoffice>
+		</blocks>
+	</global>
+  
+	<default>
+		<carriers>
+			<closestpostoffice>
+				<active>1</active>				
+				<model>closestpostoffice/posti</model>
+				<title>Available Shipping Method</title>
+				<sallowspecific>0</sallowspecific>
+			</closestpostoffice>
+		</carriers>
+	</default>
+  
+  
+</config>

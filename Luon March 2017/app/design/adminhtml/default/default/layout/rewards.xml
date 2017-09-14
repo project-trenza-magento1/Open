@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+    <adminhtml_rewards_points_index>
+        <reference name="content">
+            <block type="rewards/adminhtml_points_list" name="points_list" template="rewards/grid.phtml">
+                <block type="adminhtml/store_switcher" name="store_switcher" as="store_switcher">
+                    <action method="hasDefaultOption"><params>0</params></action>
+                    <action method="setTemplate"><template>rewards/grid/switcher.phtml</template></action>
+                </block>
+            </block>
+        </reference>
+    </adminhtml_rewards_points_index>
+
+    <adminhtml_rewards_points_edit>
+        <reference name="content">
+            <block type="rewards/adminhtml_points_edit" name="edit_tabs"/>
+        </reference>
+        <reference name="left">
+            <block type="rewards/adminhtml_points_edit_tabs" name="points_edit_tabs">
+                <block type="rewards/adminhtml_points_edit_tabs_general" name="points_edit_tabs_general" />
+                <action method="addTab"><name>general_section</name><block>points_edit_tabs_general</block></action>
+            </block>
+        </reference>
+    </adminhtml_rewards_points_edit>
+
+    <adminhtml_rewards_history_index>
+        <reference name="content">
+            <block type="rewards/adminhtml_history_list" name="history_list" template="rewards/grid.phtml">
+                <block type="adminhtml/store_switcher" name="store_switcher" as="store_switcher">
+                    <action method="hasDefaultOption"><params>0</params></action>
+                    <action method="setTemplate"><template>rewards/grid/switcher.phtml</template></action>
+                </block>
+            </block>
+        </reference>
+    </adminhtml_rewards_history_index>
+
+    <adminhtml_rewards_history_customergrid>
+        <reference name="root">
+           <block type="rewards/adminhtml_customer_edit_tab_rewards_history" name="customer_edit_tab_rewards_history"  />
+        </reference>
+    </adminhtml_rewards_history_customergrid>
+
+    <adminhtml_system_config_edit>
+        <reference name="content">
+            <block type="adminhtml/template" name="reward_points_config"  template="rewards/config.phtml"></block>
+        </reference>
+    </adminhtml_system_config_edit>
+
+    <adminhtml_sales_order_create_index>
+        <reference name="coupons">
+             <action method="setTemplate" ifconfig="rewards/general/enabled">
+                <template>rewards/sales/order/create/coupons/form.phtml</template>
+             </action>
+        </reference>
+    </adminhtml_sales_order_create_index>
+
+    <adminhtml_sales_order_create_load_block_data>
+        <reference name="coupons">
+             <action method="setTemplate" ifconfig="rewards/general/enabled">
+                <template>rewards/sales/order/create/coupons/form.phtml</template>
+             </action>
+        </reference>
+    </adminhtml_sales_order_create_load_block_data>
+
+     <adminhtml_sales_order_create_load_block_items>
+        <reference name="coupons">
+             <action method="setTemplate" ifconfig="rewards/general/enabled">
+                <template>rewards/sales/order/create/coupons/form.phtml</template>
+             </action>
+        </reference>
+     </adminhtml_sales_order_create_load_block_items>
+
+     <adminhtml_customer_edit>
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/plumrocket/rewards/pr_customercedit.js</name></action>
+        </reference>
+        <reference name="left">
+            <reference  name="customer_edit_tabs">
+                <block type="rewards/adminhtml_customer_edit_tab_rewards" name="customer_edit_tab_rewards">
+                    <block type="rewards/adminhtml_customer_edit_tab_rewards_fields" name="customer_edit_tab_rewards_fields" />
+                    <block type="rewards/adminhtml_customer_edit_tab_rewards_history" name="customer_edit_tab_rewards_history"  />
+                </block>
+                <action method="addTabAfter"><name>customer_edit_tab_rewards</name><block>customer_edit_tab_rewards</block><after>account</after></action>
+            </reference>
+        </reference>
+    </adminhtml_customer_edit>
+
+</layout>

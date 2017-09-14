@@ -1,0 +1,79 @@
+<?php
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket_Reward_Points
+ * @copyright   Copyright (c) 2015 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+?>
+
+<?php echo $this->setTemplate('sales/order/create/coupons/form.phtml')->toHtml(); ?>
+
+<?php
+$_config = Mage::getModel('rewards/config');
+$_helper = Mage::helper('rewards');
+if ($_config->modulEnabled()) {
+
+    $quote = $this->getQuote();
+
+    if ($customerId = $quote->getCustomerId()){
+        $modelPoints = Mage::getModel('rewards/points')
+            ->setQuote($quote)
+            ->getByCustomer($customerId, $quote->getStoreId(), true);
+        $maxCountAvailble = $modelPoints->getMaxCountAvailble();
+
+        $pointsInfo = json_decode($modelPoints->getJsData(), true);
+?>
+
+<div class="entry-edit box-right">
+    <div class="entry-edit-head">
+        <h4 class="icon-head">
+            <?php echo $_helper->__('Apply Reward Points') ?>
+            <?php if ($maxCountAvailble) { ?>
+                <?php echo $_helper->__('(Max. %s point(s))', $maxCountAvailble) ?>
+            <?php } ?>
+        </h4>
+     </div>
+     <fieldset class="np">
+         <div class="content">
+            <?php if ($maxCountAvailble) { ?>
+            <p><input type="text" class="input-text" id="rewards_point_count" value="" name="rewards_point_count" style="width:200px" />&nbsp;<?php echo $this->getButtonHtml(Mage::helper('sales')->__('Apply'), 'order.applyRewardPoints($F(\'rewards_point_count\'))') ?></p>
+            <?php if($pointsInfo['activated']): ?>
+                <p><strong><?php echo $_helper->__('Using %s point(s)', $pointsInfo['activated']) ?></strong> [<a href="#" onclick="order.applyRewardPoints(0); return false;" title="<?php echo $_helper->__('Remove Reward Points') ?>"><?php echo Mage::helper('sales')->__('Remove') ?></a>]</p>
+            <?php endif; ?>
+            <script type="text/javascript">
+                order.overlay('shipping-method-overlay', <?php if ($this->getQuote()->isVirtual()): ?>false<?php else: ?>true<?php endif; ?>);
+                order.overlay('address-shipping-overlay', <?php if ($this->getQuote()->isVirtual()): ?>false<?php else: ?>true<?php endif; ?>);
+
+                order.applyRewardPoints =  function(points){
+                    this.loadArea(['items', 'shipping_method', 'totals', 'billing_method'], true, {'order[rewards_point_count]':points, reset_shipping: true});
+                };
+            </script>
+            <?php } else { ?>
+                <?php if (!$modelPoints->getAvailable()) { ?>
+                    <label> <?php echo $this->__( 'Customer have no points.'); ?> </label><br/>
+                <?php } else { ?>
+                     <label> <?php echo $this->__( 'Customer can not use points.'); ?> </label><br/>
+                     <?php if ($v = $_config->getMinRedeemableCredit()) { ?>
+                        <?php echo $this->__('Minimum points used per order: %1$s', $v); ?><br/>
+                     <?php } ?>
+                     <?php if ($v = $_config->getMaxRedeemableCredit()) { ?>
+                        <?php echo $this->__('Maximum points used per order: %1$s', $v); ?><br/>
+                     <?php } ?>
+                     <?php } ?>
+            <?php } ?>
+        </div>
+    </fieldset>
+</div>
+<div class="clear"></div>
+<?php } } ?>
+

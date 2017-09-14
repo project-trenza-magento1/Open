@@ -1,0 +1,288 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @extension   Remmote_Facebookpixelremarketing
+ * @author      Remmote    
+ * @copyright   2016 - Remmote.com
+ * @descripion  Module admin panel settings
+ */
+-->
+<config>
+    <tabs>
+        <remmote_extensions translate="label" module="remmote_facebookpixelremarketing">
+          <label>Remmote Extensions</label>
+          <sort_order>250</sort_order>
+        </remmote_extensions>
+    </tabs>
+    <sections>
+        <remmote_facebookpixelremarketing translate="label" module="remmote_facebookpixelremarketing">
+            <label>Facebook Pixel Remarketing Settings</label>
+            <tab>remmote_extensions</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>255</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <info>
+                    <frontend_model>Remmote_Facebookpixelremarketing_Block_Adminhtml_System_Config_Fieldset_Info</frontend_model>
+                    <sort_order>5</sort_order>
+                    <show_in_default>1</show_in_default>
+                </info>
+                <general translate="label">
+                    <label>General Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment><![CDATA[This extension will install Facebook Pixel in your Magento store. Test in real time using the Google Chrome extension: <a href="https://chrome.google.com/webstore/detail/facebook-pixel-helper/fdgfkebogiimcoedlicjlajpkdmockpc" target="_blank">Facebook Pixel Helper</a>]]>
+                    </comment>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Module Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enable Extension?</comment>
+                        </enabled>
+
+                        <pixel_id translate="label">
+                            <label>Facebook Pixel ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Your Facebook Pixel ID</comment>
+                        </pixel_id>
+                    </fields>
+                </general>
+        
+                <events translate="label">
+                    <label>Facebook Pixel Events</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment><![CDATA[Choose the events you want enable. Learn more about Facebook events <a href="https://web.facebook.com/business/help/952192354843755" target="_blank">here</a> ]]>
+                    </comment>
+                    <fields>
+                        <view_content translate="label">
+                            <label>Enable ViewContent Event</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Event triggers when someone visits the product page.</comment>
+                        </view_content>
+
+                        <search translate="label">
+                            <label>Enable Search Event</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Event triggers when someone searches for something using the search feature. Compatible with Advanced Search extension.</comment>
+                        </search>
+
+                        <add_to_cart translate="label">
+                            <label>Enable AddToCart Event</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Event triggers when someone adds a product to the cart (e.g. click on 'Add To Cart' button). If you are adding products via Ajax, the event will trigger after customers change or reload the current page.</comment>
+                        </add_to_cart>
+
+                        <add_to_wishlist translate="label">
+                            <label>Enable AddToWishlist Event</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Event triggers when someone adds a product to the wishlist (e.g. click on 'Add To Wishlist' button).</comment>
+                        </add_to_wishlist>
+
+                        <initiate_checkout translate="label">
+                            <label>Enable InitiateCheckout Event</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Event triggers when someone lands to the checkout page. Compatible with One Step Checkout.</comment>
+                        </initiate_checkout>
+
+                        <add_payment_info translate="label">
+                            <label>Enable AddPaymentInfo Event</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Event triggers when someone selects a payment method in the checkout process page. </comment>
+                        </add_payment_info>
+
+                        <purchase translate="label">
+                            <label>Enable Purchase Event</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Event triggers after someone places an order in your store (success page view).</comment>
+                        </purchase>
+
+                        <lead translate="label">
+                            <label>Enable Lead Event</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Event triggers when someone signup to the newsletter.</comment>
+                        </lead>
+
+                        <complete_registration translate="label">
+                            <label>Enable CompleteRegistration Event</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Event triggers when someone creates an account or signup to the newsletter.</comment>
+                        </complete_registration>
+                    </fields>
+                </events>
+
+                <product_catalogs translate="label">
+                    <label>Facebook Product Catalogs</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>1</expanded>
+                    <comment><![CDATA[
+                        This section will help you to configure product catalogs on Facebook. Only products with the attibute "Use for Facebook Product Catalog" set to YES will be exported. </br>
+                        If you want to export all the products and ignore this product attribute, set the option "Export all products" to YES and save the configurations. </br>
+                        You can learn more about Facebook Product Catalogs <a href="https://www.facebook.com/business/help/1397294963910848" target="_blank">here</a>.
+                        ]]>
+                    </comment>
+                    <fields>
+                        <productcatalogurl translate="label">
+                            <label>Product Catalog URL</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>Remmote_Facebookpixelremarketing_Block_Adminhtml_System_Config_Fields_Productcatalogurl</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <comment>This is the URL of your product catalog. You can use this to access your product catalog or use it when you schedule dynamic product uploads on Facebook.</comment>
+                        </productcatalogurl>    
+                        <export_all translate="label">
+                            <label>Export all products</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <comment>Select YES to export all products (attribute 'Use for Facebook Product Catalog' will be ignored). Click 'Save Config' before exporting again. </comment>
+                        </export_all>
+                        <export_not_visible_individually translate="label">
+                            <label>Export products Not Visible Individually</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>16</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <comment>Select YES if you also want to export products not visible individually. For example, child products of configurable products or products associated to grouped products.</comment>
+                        </export_not_visible_individually>  
+                        <extra_attributes translate="label">
+                            <label>Extra attributes</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>17</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <comment>Include extra attributes that you want to export. Separate each attribute by commas. (Example: weight, meta_description, msrp). This is a Beta feature, If your CSV file is empty or you are getting any error, just set this field to empty.</comment>
+                        </extra_attributes>
+                        <include_tax translate="label">
+                            <label>Include Tax in product prices</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>18</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <comment>If 'Yes', product prices are exported including tax.</comment>
+                        </include_tax>  
+                        <exportcatalog translate="label">
+                            <label>Export Product Catalog</label>
+                            <frontend_type>button</frontend_type>
+                            <frontend_model>Remmote_Facebookpixelremarketing_Block_Adminhtml_System_Config_Fields_Button</frontend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </exportcatalog>
+
+                        <facebook_recurring_uploads translate="label">
+                            <label>Facebook Scheduled Recurring Uploads</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </facebook_recurring_uploads>
+                        <enabled translate="label">
+                            <label>Enable Recurring Uploads</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <comment>Enable this option if you want to setup automatic updates of your facebook product catalog. A new product catalog file will be generated depending on your scheduled configurations.</comment>
+                        </enabled> 
+                        <frequency translate="label">
+                            <label>Select Frequency</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>remmote_facebookpixelremarketing/config_frequencydropdown</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment>Define the frequency</comment>
+                        </frequency>
+                        <time translate="label">
+                            <label>Select Time</label>
+                            <frontend_type>time</frontend_type>
+                            <backend_model>remmote_facebookpixelremarketing/system_config_backend_cron</backend_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment>Define the time (Make sure to choose a time before the time you have configured on your product catalog in Facebook.</comment>
+                        </time>
+                        <time_lastexport translate="label">
+                            <label>Last Export Time</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment>The last time that the product catalog file was generated.</comment>
+                        </time_lastexport>
+                    </fields>
+                </product_catalogs>
+            </groups>
+        </remmote_facebookpixelremarketing> 
+    </sections>
+</config>

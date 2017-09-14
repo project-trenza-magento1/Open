@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+
+	<adminhtml_invitations_index_index>
+		<reference name="content">
+			<block type="invitations/adminhtml_list" name="invitations_list"/>
+		</reference>
+	</adminhtml_invitations_index_index>
+
+	<adminhtml_invitations_addressbooks_index>
+		<reference name="head">
+			<action method="addCss"><stylesheet>css/plumrocket/invitations/invitations.css</stylesheet></action>
+        </reference>
+		<reference name="content">
+			<block type="invitations/adminhtml_addressbooks_list" name="invitations_addressbooks_list"/>
+		</reference>
+	</adminhtml_invitations_addressbooks_index>
+
+	<adminhtml_invitations_addressbooks_edit>
+		<reference name="content">
+			<block type="invitations/adminhtml_addressbooks_edit" name="invitations_addressbooks_edit"/>
+		</reference>
+        <reference name="left">
+            <block type="invitations/adminhtml_addressbooks_edit_tabs" name="invitations_addressbooks_tabs">
+				<block type="invitations/adminhtml_addressbooks_edit_tabs_general" name="invitations_addressbooks_tabs_general" />
+                <action method="addTab"><name>general_section</name><block>invitations_addressbooks_tabs_general</block></action>
+			</block>
+        </reference>
+	</adminhtml_invitations_addressbooks_edit>
+</layout>

@@ -1,0 +1,38 @@
+<?php
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket_Invitations
+ * @copyright   Copyright (c) 2012 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+?> 
+
+<?php
+	$addressBook = $this->getAddressBook();
+	if (!($action = $addressBook->getAction())){ 
+		$action = 'pInvitations.goToStep2(\''.$addressBook->getId().'\');';
+	}
+?>
+
+<li class="col"><a href="javascript: " onclick="<?php echo $action ?>" class="icons <?php echo $addressBook->getKey(); ?>" title="<?php echo $addressBook->getName(); ?>"><span class="serv-name"><?php echo $addressBook->getName(); ?></span></a></li>
+
+
+<script type="text/javascript">
+	pInvitations.mailruConnect = function()
+	{
+		pInvitations.providerConnect({
+			url 	: "https://connect.mail.ru/oauth/authorize?client_id=<?php echo $addressBook->getSettingByKey('client_id') ?>&redirect_uri=<?php echo $this->getUrl('*/inviter/mailruRedirect') ?>&response_type=code",
+			name	: "mailruApi",
+			params	: "width=450,height=400,resizable=yes,scrollbars=yes,status=yes"
+		}, "<?php echo $addressBook->getId() ?>");
+	}
+</script>

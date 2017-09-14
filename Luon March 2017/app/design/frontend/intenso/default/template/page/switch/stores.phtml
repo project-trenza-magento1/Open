@@ -1,0 +1,28 @@
+<?php
+/**
+ * Intenso Premium Theme
+ *
+ * @category    Itactica
+ * @package     Itactica_Intenso
+ * @copyright   Copyright (c) 2014-2016 Itactica (http://www.itactica.com)
+ * @license     http://getintenso.com/license
+ */
+?>
+<?php
+/**
+ * Store switcher template
+ *
+ * @see Mage_Core_Block_Store_Switcher
+ */
+?>
+<?php if(count($this->getGroups())>1): ?>
+<div class="store-switcher">
+    <label><?php echo $this->__('Select Store:') ?></label>
+    <select title="<?php echo $this->__('Select Store') ?>" onchange="location.href=this.value">
+    <?php foreach ($this->getGroups() as $_group): ?>
+        <?php $_selected = ($_group->getId()==$this->getCurrentGroupId()) ? ' selected="selected"' : '' ?>
+        <option value="<?php echo $_group->getHomeUrl() ?>"<?php echo $_selected ?>><?php echo $this->escapeHtml($_group->getName()) ?></option>
+    <?php endforeach; ?>
+    </select>
+</div>
+<?php endif; ?>

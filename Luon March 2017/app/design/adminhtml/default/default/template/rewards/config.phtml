@@ -1,0 +1,83 @@
+<?php
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please 
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket_Reward_Points
+ * @copyright   Copyright (c) 2012 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+?>
+<?php 
+	if ($this->getRequest()->getParam('section') != 'rewards'){
+		return;
+	}	
+	
+	$storeCod = $this->getRequest()->getParam('store');
+	if (!$storeCod){
+		$store = Mage::app()->getStore();
+	} else {
+		$store =Mage::getModel('core/store')->load($storeCod, 'code' );
+	}
+?>
+<script type="text/javascript">
+//<![CDATA[
+	document.observe('dom:loaded', function() { 
+		
+		var redeemPointsRate	= document.getElementById('rewards_points_redemption_redeem_points_rate');
+		var earnPointsRate		= document.getElementById('rewards_order_credits_earn_points_rate');
+		
+		function setRewardsCurrencyName()
+		{
+			var elements = $$('.rCurrencyName');
+			for(var i = 0; i < elements.length; i++){
+				elements[i].update('<?php echo Mage::app()->getLocale()->currency($store->getCurrentCurrencyCode())->getName() ?>');
+			}
+		}
+		
+		function changeRedeemPointsRate(){
+			var e = redeemPointsRate;
+			var val = parseInt(e.value);
+			
+			if (!val || val < 1){
+				val = 1;
+				//e.value = 1;
+			}
+			
+			var elements = $$('.redeem_points_rate_val');
+			for(var i = 0; i < elements.length; i++){
+				elements[i].update(val);
+			}
+		}
+		
+		function changeEarnPointsRate(){
+			var e = earnPointsRate;
+			var val = parseInt(e.value);
+
+			if (!val || val < 1){
+				val = 0;
+				//e.value = 1;
+			}
+			
+			var elements = $$('.earn_points_rate_val');
+			for(var i = 0; i < elements.length; i++){
+				elements[i].update(val);
+			}
+		}
+		
+		setRewardsCurrencyName();
+		redeemPointsRate.onkeyup	= changeRedeemPointsRate; changeRedeemPointsRate();
+		earnPointsRate.onkeyup		= changeEarnPointsRate; changeEarnPointsRate();
+		
+	});
+//]]>
+</script>
+
+

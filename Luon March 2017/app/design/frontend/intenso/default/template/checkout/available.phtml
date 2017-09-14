@@ -1,0 +1,11 @@
+<h1>TEST</h1>
+<?php
+    $carrier = Mage::getModel('shipping/config')->getCarrierInstance($code);
+    if($carrier->getFormBlock()){
+        $block = $this->getLayout()->createBlock($carrier->getFormBlock());
+        $block->setMethodCode($code);
+        $block->setRate($_rate);
+        $block->setMethodInstance($carrier);
+        echo $block->_toHtml();
+    }
+?>

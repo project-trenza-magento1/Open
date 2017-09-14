@@ -1,0 +1,63 @@
+<?php
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket_Reward_Points
+ * @copyright   Copyright (c) 2012 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+?>
+
+<div class="dashboard">
+    <div class="page-title">
+        <h1><?php echo $this->__('My Dashboard') ?></h1>
+    </div>
+    <?php 
+		echo $this->getMessagesBlock()->getGroupedHtml();
+		echo $this->getChildHtml('hello');
+		echo $this->getChildHtml('top');
+		
+		//$currencySymbol = Mage::app()->getLocale()->currency(Mage::app()->getStore()->getCurrentCurrencyCode())->getSymbol();
+		$customerPoints = Mage::getModel('rewards/points')->getByCustomer(Mage::helper('rewards')->getCurrentCustomerId());
+	?>
+	<div class="box-account box-recent">
+        <div class="box-head">
+            <h2><?php echo $this->__('Reward Points') ?></h2>
+			<a href="<?php echo $this->getUrl('rewards') ?>" data-bitly-type="bitly_hover_card"><?php echo $this->__('View All'); ?></a>
+        </div>
+        <ul class="reward-list">
+			<li><?php echo $this->__('Available points:') ?> <?php echo $customerPoints->getAvailable() ?></li>
+			<li><?php echo $this->__('Total Accumulated points:') ?> <?php echo ($customerPoints->getAccumulated()) ?></li> 
+			<li><?php echo $this->__('Spent points:') ?> <?php echo $customerPoints->getSpent() ?></li>
+		</ul>
+		
+		<?php
+			$inviteePoints = Mage::getModel('rewards/config')->getInviteCredit();
+			if (Mage::helper('rewards')->modulePlumrocketInvitationsEnabled() && $inviteePoints) { 
+		?>
+		<br/>
+		<span class="info-block">
+			<?php printf( $this->__( 'Every friend you invite who makes a purchase earns you %1$s points.' ), ($inviteePoints) ) ?>
+			<br/>
+			<a href="<?php echo $this->getUrl('invitations')?>"><?php echo $this->__('Invite Friends'); ?></a>
+		<span>
+		<?php } ?>
+    </div>
+    <div class="box-account box-info">
+        <div class="box-head">
+            <h2><?php echo $this->__('Account Information') ?></h2>
+        </div>
+        <?php echo $this->getChildHtml('info') ?>
+        <?php echo $this->getChildHtml('address') ?>
+    </div>
+    <?php echo $this->getChildHtml('info1') ?>
+    <?php echo $this->getChildHtml('info2') ?>
+</div>

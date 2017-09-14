@@ -1,0 +1,42 @@
+<h1>test</h1>
+<?php
+    $carrier = Mage::getModel('shipping/config')->getCarrierInstance($code);
+    if($carrier->getFormBlock()){
+        $block = $this->getLayout()->createBlock($carrier->getFormBlock());
+        $block->setMethodCode($code);
+        $block->setRate($_rate);
+        $block->setMethodInstance($carrier);
+        echo $block->_toHtml();
+    }
+?>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        hideShippingAll();
+        jQuery('input[type="radio"][name="shipping_method"]').click(function(){
+                hideShippingAll();
+                var code = jQuery(this).val();
+                if(jQuery(this).is(':checked')){
+                    showShipping(code);
+                }
+        });
+        jQuery('input[type="radio"][name="shipping_method"]').each(function(){
+            var code = jQuery(this).val();
+            if(jQuery(this).is(":checked")){
+                showShipping(code);
+            }      
+        });
+    });
+    function showShipping(code){
+        if(jQuery('#'+'shipping_form_'+code).length != 0){
+            jQuery('#'+'shipping_form_'+code).show();
+            jQuery(this).find('.required-entry').attr('disabled','false');
+        }
+    }
+    function hideShippingAll(){
+        jQuery('input[type="radio"][name="shipping_method"]').each(function(){
+            var code = jQuery(this).val();
+            jQuery('#'+'shipping_form_'+code).hide();
+            jQuery(this).find('.required-entry').attr('disabled','true');  
+        });
+    }
+</script>

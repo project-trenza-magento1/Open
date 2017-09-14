@@ -1,0 +1,162 @@
+<?php
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket_Reward_Points
+ * @copyright   Copyright (c) 2012 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+?>
+
+<?php
+$_config = Mage::getModel('rewards/config');
+if ($_config->modulEnabled()) {
+	if (Mage::helper('rewards')->getCurrentCustomerId()){
+		$modelPoints = Mage::getModel('rewards/points');
+		//$minCountAvailble = $modelPoints->getMinCountAvailble();
+		$maxCountAvailble = $modelPoints->getMaxCountAvailble();
+?>
+<?php
+	$fUrl = $this->getUrl('rewards/index/activatePoints');
+	if (Mage::app()->getStore()->isCurrentlySecure()) {
+		$fUrl = str_replace('http://', 'https://', $fUrl);
+	}
+?>
+<form id="reward-credit-coupon-form" action="<?php echo $fUrl ?>" method="post">
+    <div class="discount">
+        <h2><?php echo $this->__('Reward Points') ?></h2>
+        <div class="discount-form">
+			<?php if ($maxCountAvailble) { ?>
+            
+				<label style="text-align:right;"> <?php echo $this->__( 'You can use <strong>%1$s</strong> points.' , $maxCountAvailble); ?> </label><br/>
+				<?php echo $this->__('Use %1$s point(s) to get %2$s discount.', $_config->getRedeemPointsRate(), Mage::helper('core')->currency(1, true, false)); ?><br/><br/>
+				<div id="rewards_slider"></div>
+				<div style="position:relative; padding-top:5px;" class="clearer clearfix" id="points_description">
+					<span style="float:left" >
+						<?php echo $this->__('Use'); ?>: <strong><input style="width: 50px;" class="input-text" type="text" id="rewards_point_count" name="rewards_point_count" value="" /></strong> <?php echo $this->__('points'); ?> = <strong><span class="money-count"></span></strong>
+					</span>
+				</div>
+            <br/>
+            <?php if ($v = $_config->getMinRedeemableCredit()) { ?>
+				<?php echo $this->__('Minimum points used per order: %1$s', $v); ?><br/>
+			 <?php } ?>
+			 <?php if ($v = $_config->getMaxRedeemableCredit()) { ?>
+				<?php echo $this->__('Maximum points used per order: %1$s', $v); ?><br/>
+			<?php } ?>
+            <div class="buttons-set">
+                <button type="button" title="<?php echo $this->__('Apply Credit') ?>" class="button submit" value="<?php echo $this->__('Apply Points') ?>"><span><span><?php echo $this->__('Apply Points') ?></span></span></button>
+
+                <?php
+					$dUrl = $this->getUrl('rewards/index/deactivatePoints');
+					if (Mage::app()->getStore()->isCurrentlySecure()) {
+						$dUrl = str_replace('http://', 'https://', $dUrl);
+					}
+				?>
+                <button type="button" onclick="window.location='<?php echo $dUrl ?>'; return false;" title="<?php echo $this->__('Cancel') ?>" class="button" value="<?php echo $this->__('Cancel') ?>"><span><span><?php echo $this->__('Cancel') ?></span></span></button>
+            </div>
+            <script type="text/javascript">
+				pjQuery_1_10_2(document).ready(function(){
+					var pointsConfig = <?php echo $modelPoints->getJsData() ?>;
+					var input = pjQuery_1_10_2('#rewards_point_count');
+					
+					function applyPoints(value, update){
+						var pDescription = pjQuery_1_10_2('#points_description');
+						var price = value / pointsConfig.redeemPointsRate * <?php echo Mage::helper('core')->currency(1, false, false) ?>;
+						var format = pointsConfig.priceFormat;
+
+						if (((parseFloat(price) - parseInt(price)) > 0)
+							&& (format.requiredPrecision == 0)
+						) {
+							format.requiredPrecision = 2;
+							price = formatCurrency(price, format);
+							format.requiredPrecision = 0;
+						} else {
+							price = formatCurrency(price, format);
+						}
+
+						pDescription.find('.money-count').html(price);
+						if (typeof update != "undefined"){
+							input.val(value);
+						}
+					};
+					applyPoints(pointsConfig.activated, true);
+					
+					var slider = pjQuery_1_10_2( "#rewards_slider" ).slider({
+						'value'	: pointsConfig.activated,
+						'step'	: 1,
+						'min'	: pointsConfig.minCountAvailble, 
+						'max'	: pointsConfig.maxCountAvailble,
+						'animate': true,
+						'slide'	: function( event, ui ) {
+							applyPoints(ui.value, true);
+						},
+						'change' : function( event, ui ){
+							applyPoints(ui.value, true);
+						}
+						
+					});
+					
+					input.keyup(function(){
+						var val = parseInt(input.val());
+						if (!val) val =0;
+
+						applyPoints(val);
+						slider.slider({'value' : val});
+					}).blur(function(){
+						var val = parseInt(input.val());
+						if (!val) val =0;
+						
+						if (val < pointsConfig.minCountAvailble){
+							val = pointsConfig.minCountAvailble;
+						} else if (val > pointsConfig.maxCountAvailble) {
+							val = pointsConfig.maxCountAvailble;
+						}
+						applyPoints(val, true);
+						slider.slider({'value' : val});
+					});
+				});	
+			</script>
+            <?php } else { ?>
+				<?php if (!$modelPoints->getAvailable()) { ?>
+					<label> <?php echo $this->__( 'You have no points.'); ?> </label><br/>
+				<?php } else { ?>
+					 <label> <?php echo $this->__( 'You can not use points.'); ?> </label><br/>
+					 <?php if ($v = $_config->getMinRedeemableCredit()) { ?>
+						<?php echo $this->__('Minimum points used per order: %1$s', $v); ?><br/>
+					 <?php } ?>
+					 <?php if ($v = $_config->getMaxRedeemableCredit()) { ?>
+						<?php echo $this->__('Maximum points used per order: %1$s', $v); ?><br/>
+					 <?php } ?>
+					 <?php } ?>
+			<?php } ?>
+        </div>
+    </div>
+</form>
+<div class="cf clearfix"></div>
+<br/>
+<script type="text/javascript">
+	pjQuery_1_10_2(document).ready(function(){
+		var form = pjQuery_1_10_2('#reward-credit-coupon-form');
+		form.find('button.submit').click(function(){
+			form.submit();
+		});
+	});
+</script>
+<?php } else { ?>
+	<div class="discount">
+        <h2><?php echo $this->__('Reward Points') ?></h2>
+        <div class="discount-form">
+        	<?php echo $this->__('Please log in to use points.') ?>
+        </div>
+    </div>
+<?php } } ?>
+
+<?php echo $this->setTemplate('checkout/cart/coupon.phtml')->toHtml(); ?>

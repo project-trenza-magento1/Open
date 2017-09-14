@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <WBL_Minify>
+            <version>0.1.0</version>
+        </WBL_Minify>
+    </modules>
+    <global>
+        <helpers>
+            <wbl_minify>
+                <class>WBL_Minify_Helper</class>
+            </wbl_minify>
+            <core>
+                <rewrite>
+                    <data>WBL_Minify_Helper_Core_Data</data>
+                </rewrite>
+            </core>
+        </helpers>
+        <blocks>
+            <page>
+                <rewrite>
+                    <html_head>WBL_Minify_Block_Page_Html_Head</html_head>
+                </rewrite>
+            </page>
+        </blocks>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <wbl_minify module="wbl_minify">
+                    <file>wbl_minify.xml</file>
+                </wbl_minify>
+            </updates>
+        </layout>
+    </frontend>
+    <default>
+   		<dev>
+   			<css>
+   				<lessjs>1</lessjs>
+   			</css>
+   		</dev>
+   	</default>
+</config>

@@ -1,0 +1,289 @@
+<?php
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket_Invitations
+ * @copyright   Copyright (c) 2012 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+?> 
+
+<?php 
+	$modelConfig	= Mage::getModel('invitations/config');
+	$_helper		= $this->helper('invitations');
+	$referralLink	= $_helper->getRefferalLink();
+	$iviteeText		= $_helper->getFilteredInviteeText();
+	
+	$fbABook = Mage::getModel('invitations/addressbooks')->getByKey('facebook');
+
+	$_themePackageName = Mage::getSingleton('core/design_package')->getPackageName();
+?>
+<div class="clearer clearfix">
+<div id="invite-friends-holder" class="invivations-theme-account">
+	<!--<div id="transactional_error" style="background-color:#FFFFFF;border:2px solid #DDDDDD;display:none;font-size:1.1em;font-weight:bold;padding:15px;position:absolute;text-align:center;width:450px;z-index:500;"></div>-->
+	<div class="page-title">
+		<h1><?php echo $this->__('Invite friends') ?></h1>
+	</div>
+	<div id='messages-holder' style="display:none;">
+		<ul id="messages" class="messages"></ul>
+	</div>
+	
+	<?php if ($_helper->modulePlumrocketRewardpointsEnabled() && ($inviteePoints = Mage::getModel('rewards/config')->getInviteCredit())) { ?>
+		<div class="page-head">
+			<h4><?php echo $this->__( 'Invite friends you get %1$s points when they get their first order.', ($inviteePoints) ) ?></h4>
+		</div>
+	<?php } ?>
+
+	<?php if ($modelConfig->showReferralLink()) { ?>
+	<div class="account-box ad-account-info box">
+		<div class=" box-recent">
+			<div class="head box-title">
+				<h6><?php echo $this->__('YOUR INVITATION LINK') ?></h6>
+			</div>
+			<p><?php echo $this->__('Share this unique-to-you link anywhere - email, tweet or update. The more you share, the more you earn!') ?> </p>
+			<br>
+			<div class="scrolling"><strong><?php echo $referralLink;?></strong></div>
+		</div>
+		<br>
+	</div>
+	<?php } ?>
+
+	<form id="invite-friends-form" action="<?php echo $this->getUrl('invitations/index/send') ?>">
+		<table>
+			<tr>
+				<td class="td_1"><b><?php echo $this->__('To:') ?></b></td>
+				<td class="td_2">
+					<input name="contact-list" id="contact-list" value="" />
+					<div style="display:none;" id="contact-list-data"></div>
+					<div class="inv-example">
+						<?php echo $this->__('Enter emails. For example: first@example.com, second@example.com') ?>
+					</div>
+					<div id="invitation-contacts-error" class="validation-advice" style="display:none;"><?php echo $this->__('Please enter one or more valid email addresses.') ?></div>
+					<div id="invitation-result-error" class="validation-advice" style="display:none;"><?php echo $this->__('Please enter one or more valid email addresses.') ?></div>
+				</td>
+				<td class="td_3">
+					<?php if ($this->hasEnabledBooks()) { ?>
+						<a href="javascript: " class="add-contacts" onClick="pInvitations.goToStep1();">
+							<span class="plus"><span></span></span><span class="text"><b><?php echo $this->__('ADD CONTACTS') ?></b><br/><?php echo $this->__('FROM MY ADDRESS BOOK') ?></span>
+						</a>
+					<?php } ?>
+
+					<?php if ($fbABook->isEnabled()) { ?>
+						<a href="javascript: " class="invite-facebook-friends" id="fb2">
+							<span class="facebook_logo"><span></span></span><span class="text"><?php echo $this->__('INVITE YOUR FACEBOOK FRIENDS') ?></span>
+						</a>
+					<?php } ?>
+				</td>
+			</tr>
+			<tr>
+				<td class="td_1"><b><?php echo $this->__('Message:') ?></b></td>
+				<td class="td_2">
+					<textarea style="width:400px;" width="300px" rows="10" name="message" id="invitation-message" <?php if (!($modelConfig->editInviteeText())) echo 'disabled="disabled"'; ?>><?php echo $iviteeText ?></textarea><br/>
+					<input id="focus-input" value="" style="position: absolute; left: -10000px;"/>
+					<div id="invitation-message-error" class="validation-advice" style="display:none;"><?php echo $this->__('This is a required field.') ?></div>
+					<?php if ($modelConfig->editInviteeText()) { ?>
+						<div style="text-align:right; color: #666;" id="invitation-message-left-chars"></div>
+					<?php } ?>
+				</td>
+				<td class="td_3"></td>
+			</tr>
+			<tr>
+				<td class="td_1"></td>
+				<td class="send_invit td_2">
+					<div class="h20">
+						<img src="<?php echo $this->getSkinUrl('images/plumrocket/invitations/loader.gif')?>" class="invitation-loader" />
+					</div>
+					<button type="button" title="Send Invitation" class="button btn-cart send-invitation"><span><span><?php echo $this->__('Send Invitation') ?></span></span></button><br/>
+				</td>
+				<td class="td_3"></td>
+			</tr>
+		</table>
+	</form>
+</div>
+</div>
+
+<?php if ($this->neadMigration()) { ?>
+	<br/>
+	<p class="neadmigration_text">
+	<?php
+		echo $this->__(
+			'We believe you have used your email "<strong>%s</strong>" earlier to invite friends on <strong>%s</strong>. Please <a href="%s">click here</a> to send verification email and transfer all invitees to current store account.',
+			$this->getCustomer()->getEmail(),
+			$this->getStoreName(),
+			$this->getUrl('*/promo/sendGuestVerificationEmail')
+		);
+	?>
+	</p>
+	<br/>
+<?php } ?>
+
+<div class="clearer clearfix invivations-theme-account">
+	<div class="invitations-lists-button-holder">
+		<div class="h20">
+			<img src="<?php echo $this->getSkinUrl('images/plumrocket/invitations/loader.gif')?>" class="invitation-loader tabs-loader"/>
+		</div>
+		<button id="load-open-invitations" type="button" title="<?php echo $this->__('Open Invitations') ?>" class="button in-tab active btn-cart"><span><span><?php echo $this->__('Open Invitations') ?></span></span></button>
+		<button id="load-accepted-invitations" type="button" title="<?php echo $this->__('Accepted Invitations') ?>" class="button in-tab no-active btn-cart"><span><span><?php echo $this->__('Accepted Invitations') ?></span></span></button>
+	</div>
+</div>
+
+<div id="invitations-lists" class="invivations-theme-account">
+	<?php  echo $this->getLayout()->createBlock('invitations/open')->setData('customerId', $this->getRequest()->getParam('customer')->getId())->toHtml(); ?>
+</div>
+
+<script type="text/javascript">
+	pjQuery_1_10_2(document).ready(function(){
+		
+		pjQuery_1_10_2('body').addClass('invitations-design-<?php echo Mage::getDesign()->getPackageName() ?>-<?php echo Mage::getDesign()->getTheme('template') ?>');
+		
+		<?php if ($modelConfig->editInviteeText()) { ?>
+		var maxInvtMsgLength = 500;
+		var invtMsgArea = pjQuery_1_10_2('#invitation-message');
+		if (invtMsgArea.val().length > maxInvtMsgLength) {
+			maxInvtMsgLength = invtMsgArea.val().length+100;
+		}
+
+		invtMsgArea.keyup(function(e) {
+			var tval = pjQuery_1_10_2(this).val(),
+				tlength = tval.length,
+				set = maxInvtMsgLength,
+				remain = parseInt(set - tlength);
+			if (remain < 0) remain = 0;
+			pjQuery_1_10_2('#invitation-message-left-chars').html('('+remain+' characters left)');
+
+			if (remain <= 0 && (e.which !== 0 || e.charCode !== 0)) {
+				pjQuery_1_10_2(this).val((tval).substring(0, maxInvtMsgLength));
+			}
+		}).keyup();
+		<?php } ?>
+		
+		var neadmigration_text = pjQuery_1_10_2('.neadmigration_text');
+		neadmigration_text.find('a').click(function(){
+			var href = pjQuery_1_10_2(this).attr('href');
+			pjQuery_1_10_2.ajax({
+				type	 : "POST",
+				cache	 : false,
+				url		 : href,
+				dataType : 'json',
+				success: function(data) {
+					if (data.success){
+						neadmigration_text.html('<?php echo $this->jsQuoteEscape($this->__('Please, check your e-mail for confirmation link.')) ?>');
+					} else {
+						neadmigration_text.html('<?php echo $this->jsQuoteEscape($this->__('Unable to proceed. Please, try again.')) ?>');
+					}	
+				},
+				error: function(){
+					neadmigration_text.html('<?php echo $this->jsQuoteEscape($this->__('Unable to proceed. Please, try again.')) ?>');
+				}
+			});
+			return false;
+		});
+	
+		pInvitations.setData({
+			'urls' : {
+				'step1'			: '<?php echo $this->getUrl('invitations/inviter/step1') ?>',
+				'step2'			: '<?php echo $this->getUrl('invitations/inviter/step2') ?>',
+				'step3'			: '<?php echo $this->getUrl('invitations/inviter/step3') ?>',
+				
+				'openInvitationsList'	: '<?php echo $this->getUrl('invitations/index/openInvitations') ?>',
+				'acceptedInvitationsList': '<?php echo $this->getUrl('invitations/index/acceptedInvitations') ?>'
+			},
+			'errorMsg' : {
+				'emailOrPasswordMissing' : '<?php echo $this->__('Email or password missing!') ?>',
+				'connectionError' : '<?php echo $this->__('Connection error please try later!') ?>'
+			},
+			'invitationsListAreaId' : 'plumrocket-ajax-load-area',
+			'popupMessages'	: false
+		});
+		pjQuery_1_10_2('#contact-list').tagsInput({
+			'defaultText'	: '<?php echo $this->__('Add e-mail...') ?>',
+			'width'			: 393,
+			'height'		: 100,
+			'autosize'		: false,
+			'email'			: true,
+			'onRemoveTag'	: function(userName){
+				pInvitations.removeFromContactList(userName)
+			},
+			'onAddTag'		: function(connectCode){
+				pInvitations.addToContactList(connectCode)
+			}
+		});
+		
+		contactListLiveaveTime = getTime();
+		pjQuery_1_10_2('#contact-list_tagsinput').mouseleave(function(){
+			var input = pjQuery_1_10_2('#contact-list_tag');
+			if (input.hasClass('not_valid'))
+			{
+				var timeout = 600;
+				setTimeout(function(){
+					var t = getTime();
+					if (t > contactListLiveaveTime + timeout)
+					{
+						contactListLiveaveTime = t;
+						input.removeClass('not_valid').val('<?php echo $this->__('Add e-mail...') ?>').css('color', '#666666');
+						pjQuery_1_10_2('#focus-input').focus();
+					}
+				}, timeout);			
+			}
+		});
+		
+		pjQuery_1_10_2('#contact-list_tagsinput').mouseenter(function(){
+			contactListLiveaveTime = getTime();
+		});
+		
+		
+		function getTime()
+		{
+			var d = new Date();
+			return d.getTime();
+		}
+		
+		//pjQuery_1_10_2('#contact-list_tagsinput').css('height','auto');
+		pjQuery_1_10_2('#invite-friends-holder .send-invitation').click(function(){
+			pInvitations.submitContactList();		
+		});	
+		pjQuery_1_10_2('#load-open-invitations').click(function(){
+			pInvitations.getOpenInvitationsList()	
+		});
+		pjQuery_1_10_2('#load-accepted-invitations').click(function(){
+			pInvitations.getAcceptedInvitationsList();	
+		});
+		pInvitations.changeInvitationsListPagerLinks(pInvitations.data.urls.openInvitationsList);
+		
+		<?php if ($fbABook->isEnabled()) { ?>
+			pjQuery_1_10_2('.invite-facebook-friends').click(function(){
+				var desc = pjQuery_1_10_2('#invitation-message').html();
+				
+				FB.init({appId: '<?php echo $fbABook->getSettingByKey('application_id') ?>', xfbml: true, cookie: true});
+				if (!pInvitations.isMobile()){
+					FB.ui({
+					  method: 'send',
+					  name: '<?php echo $this->__('Visit %s', $this->getStoreName()) ?>',
+					  link: '<?php echo $referralLink ?>',
+					  description : desc,
+					  picture : '<?php echo $this->getLogoUrl() ?>',
+					  display : 'iframe'
+					});
+				} else {
+					FB.ui({
+					  method: 'share',
+					  name: '<?php echo $this->__('Visit %s', $this->getStoreName()) ?>',
+					  href: '<?php echo $referralLink ?>',
+					  description : desc,
+					  picture : '<?php echo $this->getLogoUrl() ?>',
+					  display : 'iframe'
+					});
+				}
+			});
+		<?php } ?>
+		
+	});
+</script>

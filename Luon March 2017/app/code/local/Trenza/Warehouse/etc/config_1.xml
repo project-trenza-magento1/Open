@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Trenza_Warehouse>
+           <version>0.1.0</version>
+        </Trenza_Warehouse>
+    </modules>
+	<admin>
+        <routers>
+            <warehouse>
+                <use>admin</use>
+                <args>
+                    <module>Trenza_Warehouse</module>
+                    <frontName>warehouse</frontName>
+                </args>
+            </warehouse>
+        </routers>
+    </admin>
+	<adminhtml>
+       <!--<menu>
+            <warehouse module="warehouse">
+                <title>Product Warehouse</title>
+                <sort_order>71</sort_order>
+                <children>
+                    <index module="warehouse">
+                        <title>Genarate Article</title>
+                        <sort_order>0</sort_order>
+                        <action>warehouse/adminhtml_warehouse/</action>
+                    </index>
+                    <insertArticle module="warehouse" translate="title">
+                        <title>Genarate Warehouse</title>
+                        <sort_order>2</sort_order>
+                        <action>warehouse/adminhtml_warehouse/insertArticle</action>
+                    </insertArticle>
+                </children>
+            </warehouse>
+        </menu>-->
+
+	 <!-- <events>
+        <core_block_abstract_prepare_layout_before>
+            <warehouse_mysql4>
+                <warehouse_core_block_abstract_prepare_layout_before>
+                    <class>Trenza_Warehouse_Model_Mysql4</class>
+                    <method>addOngoingAction</method>
+                </warehouse_core_block_abstract_prepare_layout_before>
+            </warehouse_mysql4>
+        </core_block_abstract_prepare_layout_before>
+     </events>-->
+	 
+	 <menu>
+            <catalog>
+                    <children>
+                            <synInventory>
+                                    <title>Sync Warehouse Inventory</title>
+                                    <sort_order>10</sort_order>
+                                    <action>warehouse/adminhtml_warehouse/synInventory</action>
+                            </synInventory>
+                    </children>
+            </catalog>
+    </menu>
+	
+	</adminhtml>
+    <global>
+        <models>
+            <warehouse>
+                <class>Trenza_Warehouse_Model</class>
+                <resourceModel>warehouse_mysql4</resourceModel>
+            </warehouse>
+			
+            <warehouse_mysql4>
+                <class>Trenza_Warehouse_Model_Mysql4</class>
+                <entities>
+                    <warehouse>
+                        <table>warehouse</table>
+                    </warehouse>
+                </entities>
+            </warehouse_mysql4>
+			
+        </models>
+		
+        <resources>
+            <warehouse_setup>
+                <setup>
+                    <module>Trenza_Warehouse</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </warehouse_setup>
+            <warehouse_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </warehouse_write>
+            <warehouse_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </warehouse_read>
+        </resources>
+		
+		<helpers>
+            <warehouse>
+                <class>Trenza_Warehouse_Helper</class>
+            </warehouse>
+       </helpers>
+	   
+	    <blocks>
+            <warehouse>
+                <class>Trenza_Warehouse_Block</class>
+            </warehouse>
+			
+			<adminhtml>
+            <rewrite>
+                <sales_order_grid>Trenza_Warehouse_Block_Sales_Order_Grid</sales_order_grid>
+                <catalog_product_grid>Trenza_Warehouse_Block_Catalog_Product_Grid</catalog_product_grid>
+            </rewrite>
+			</adminhtml>
+		
+        </blocks>
+
+    </global>
+
+</config>

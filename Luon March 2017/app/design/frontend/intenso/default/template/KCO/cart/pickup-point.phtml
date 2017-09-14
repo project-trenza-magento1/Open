@@ -1,0 +1,106 @@
+
+<div id="pickup_points">
+    <h4><?php echo $this->__('Choose Pickup Location') ?></h4>
+    
+    <input type="hidden" name="selected_shipping_method" id="selected_shipping_method" value="<?php echo Mage::getSingleton('checkout/session')->getQuote()->getShippingAddress()->getShippingMethod(); ?>" />
+    <input type="hidden" name="customshippingcode" id="customshippingcode" value="<?php echo Mage::getSingleton('core/session')->getCustomshippingcode() ; ?>" />
+
+    
+
+    <!--matkahuolto :: customshipping_matkahuolto-->
+    <?php
+        $_options = Mage::helper('customshipping')->matkahuolto();
+    ?>
+    
+    <div id="s_method_customshipping_matkahuolto_customshipping" class="pickup_option">
+        <label for="option_matkahuolto"></label>
+        <select id="option_matkahuolto">
+            <?php if($_options): ?>
+                <?php foreach($_options as $_option): ?>
+                    <option value="<?php echo $_option['agentto'] ?>"><?php echo $_option['postcode'] . ' - ' . $_option['street'] . ' ' . $_option['city'] ?></option>
+                <?php endforeach; ?>
+            <?php endif; ?>            
+            
+        </select>
+    </div>
+    
+    
+    <!--smartpost :: customshipping_smartpost-->
+    <?php
+        $_options = Mage::helper('customshipping')->smartpost();
+    ?>
+    <div id="s_method_customshipping_smartpost_customshipping" class="pickup_option">
+        <label for="option_smartpost"></label>
+        <select id="option_smartpost">
+            <?php if($_options): ?>
+                <?php foreach($_options as $_option): ?>
+                    <option value="<?php echo $_option['pupcode'] ?>"><?php echo $_option['postcode'] . ' - ' . $_option['address'] ?></option>            
+                <?php endforeach; ?>
+            <?php endif; ?>   
+        </select>
+    </div>
+    
+    
+    <!--posti :: customshipping_chooseapostoffice -->
+    <?php
+        $_options = Mage::helper('customshipping')->posti();
+    ?>
+    <div id="s_method_customshipping_chooseapostoffice_customshipping" class="pickup_option">
+        <label for="option_chooseapostoffice"></label>
+        <select id="option_chooseapostoffice">
+            <?php if($_options): ?>
+                <?php foreach($_options as $_option): ?>
+                    <option value="<?php echo $_option['pupcode'] ?>"><?php echo $_option['postcode'] . ' - ' . $_option['address'] ?></option>            
+                <?php endforeach; ?>
+            <?php endif; ?> 
+        </select>
+    </div>   
+
+</div>
+<!--
+
+<label for="option_chooseapostoffice"></label>
+                <select id="option_chooseapostoffice">
+                    <?php if($_options): ?>
+                        <?php foreach($_options as $_k=>$_v): ?>
+                            <option value="<?php echo $_k ?>"><?php echo $_v ?></option>            
+                        <?php endforeach; ?>
+                    <?php endif; ?> 
+                </select>
+
+-->
+
+<script type="text/javascript">
+     
+     jQuery('.pickup_option').hide();
+     
+     
+     
+     jQuery('.sp-methods .radio').each(function (index) {
+        
+        
+        if(jQuery(this).is(':checked')){
+            
+            var thisid = jQuery(this).attr('id');
+            
+            if((thisid != 's_method_customshipping_homedelivery') && (thisid != 's_method_customshipping_closestpostoffice'))
+            {
+                var pickupid = thisid + '_customshipping';
+                
+                jQuery('#'+pickupid).show();
+                //jQuery('#'+pickupid+' select').chosen({width: 'auto'});
+                
+                jQuery('#'+pickupid+' select').val(jQuery('#customshippingcode').val());
+                //alert(jQuery('#customshippingcode').val());
+            }
+        }
+        
+     });
+     
+     jQuery('.pickup_option select').on('change', function() {
+            //alert( this.value );
+            jQuery('#customshippingcode').val(this.value);
+        })
+        
+        
+</script>

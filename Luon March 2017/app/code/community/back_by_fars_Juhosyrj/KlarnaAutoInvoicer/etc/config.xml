@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Juhosyrj_KlarnaAutoInvoicer>
+            <version>1.0.0</version>
+        </Juhosyrj_KlarnaAutoInvoicer>
+    </modules>
+ 
+    <global>
+ 
+        <models>            
+            <orderhook>
+                <class>Juhosyrj_KlarnaAutoInvoicer_Model</class>
+            </orderhook>
+        </models>
+ 
+        <events>
+            <sales_order_shipment_save_after>
+                <observers>
+                    <order_auto_invoice>
+                        <type>singleton</type>
+                        <class>Juhosyrj_KlarnaAutoInvoicer_Model_Observer</class>
+                        <method>salesOrderShipmentSaveAfter</method>
+                    </order_auto_invoice>
+                </observers>
+            </sales_order_shipment_save_after>
+        </events>
+ 
+    </global>
+</config>

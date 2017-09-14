@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Trenza - MINIFY HTML
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the The MIT License (MIT)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://blog.gaiterjones.com/dropdev/magento/LICENSE.txt
+ *
+ * @category    Trenza
+ * @package     Trenza_Minifyhtml
+ * @copyright   Copyright (c) 2015 Trenza
+ * @license     http://blog.gaiterjones.com/dropdev/magento/LICENSE.txt  The MIT License (MIT)
+ */
+-->
+<config>
+	<acl>
+		<resources>
+			<admin>
+				<children>
+					<system>
+						<children>
+							<config>
+								<children>
+									<minifyhtml translate="title" module="minifyhtml">
+										<title>Minify HTML</title>
+									</minifyhtml>
+								</children>
+							</config>
+						</children>
+					</system>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+</config>

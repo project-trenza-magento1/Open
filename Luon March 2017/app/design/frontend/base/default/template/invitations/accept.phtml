@@ -1,0 +1,67 @@
+<?php
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket_Invitations
+ * @copyright   Copyright (c) 2014 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+
+?>
+<?php
+    $modelConfig = Mage::getModel('invitations/config');
+    $_helper     = $this->helper('invitations');
+
+    $title = $this->escapeHtml($this->__('Visit %s', $this->getStoreName()));
+    $image = $this->getSkinUrl(Mage::getStoreConfig('design/header/logo_src'));
+    $description = $this->escapeHtml($_helper->getFilteredInviteeText());
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><?php echo $title ?></title>
+    <meta name="description" content="<?php echo $description ?>" />
+    <meta name="keywords" content="" />
+    <meta name="robots" content="NOINDEX,FOLLOW" />
+
+    <?php if ($head = $this->getLayout()->createBlock('page/html_head')) { ?>
+    <link rel="icon" href="<?php echo $head->getFaviconFile(); ?>" type="image/x-icon" />
+    <link rel="shortcut icon" href="<?php echo $head->getFaviconFile(); ?>" type="image/x-icon" />
+    <?php } ?>
+
+    <meta property="og:title" content="<?php echo $title ?>" />
+    <meta property="og:image" content="<?php echo $image ?>" />
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="<?php echo $description ?>" />
+    
+    <script type="text/javascript">
+        function onLoad() {
+            window.location = '<?php echo $this->getUrl() ?>';
+        }
+    </script>
+</head>
+<body class="invitations-index-accept" onload="onLoad();">
+<div class="wrapper">
+        <div class="page container">
+        <div class="main-container col1-layout">
+            <div class="main row">
+                <div class="col-main span12">
+                    <img src="<?php echo $image ?>" alt="<?php echo $this->getStoreName() ?>" />
+                    <p><?php echo $description ?></p>
+                </div>
+            </div>
+        </div>
+        </div>
+</div>
+</body>
+</html>
+

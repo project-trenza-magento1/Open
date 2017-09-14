@@ -1,0 +1,17 @@
+<fieldset>
+	<?php
+		//Getting admin user info
+		$admin = Mage::getSingleton('admin/session')->getUser(); 
+	?>
+	<table>
+		<tr>
+			<?php $logo_src =  Mage::getDesign()->getSkinBaseUrl(array('_area'=>'adminhtml', '_theme'=>'default')). 'remmote/facebookpixelremarketing/logo-remmote.png' ?>
+			<td style="vertical-align: middle;"><img src="<?php echo $logo_src; ?>" alt="Remmote.com" style="width: 125px;"/></td>
+			<td width="10"></td>
+			<td>
+			<h4>Hey <?php echo $admin->getFirstname()?>, thanks for using our extension!  </h4>
+			At remmote.com we are committed to deliver high quality development services for Magento. If you have any question about our extension or need any help with your online store, feel free to <strong><a href="http://www.remmote.com/contact-us/" target="_blank">get in touch with us</a></strong>. We will be happy to hear from you and we will reply you as soon as possible.
+			</td>
+		</tr>
+	</table>
+</fieldset>

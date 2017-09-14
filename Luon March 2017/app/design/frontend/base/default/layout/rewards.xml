@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+    <default>
+        <reference name="top.links">
+            <block type="rewards/links" name="checkout_cart_link">
+                <action method="addRewardsTopLink" ifconfig="rewards/general/enabled">
+                    <path>rewards</path>
+                    <label>My Points: %s</label>
+                    <position>91</position>
+                </action>
+            </block>
+        </reference>
+    </default>
+
+    <customer_account_index>
+        <reference name="customer_account_dashboard">
+            <action method="setTemplate" ifconfig="rewards/general/enabled">
+                <template>rewards/customer/account/dashboard.phtml</template>
+            </action>
+        </reference>
+    </customer_account_index>
+
+    <rewards_index_index>
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/plumrocket/rewards/rewards.css</stylesheet></action>
+            <!-- <action method="addItem"><type>skin_js</type><name>js/plumrocket/rewards/jquery-1.6.1.min.js</name></action> -->
+            <action method="addJs" ifconfig="rewards/general/enabled"><name>plumrocket/jquery-1.10.2.min.js</name></action>
+        </reference>
+        <label>Customer My Account Dashboard</label>
+        <update handle="customer_account"/>
+        <!-- Mage_Customer -->
+        <reference name="my.account.wrapper">
+            <block type="rewards/page" name="history_list" template="rewards/page.phtml"/>
+        </reference>
+        <reference name="breadcrumbs">
+            <action method="addCrumb" translate="crumbInfo.label">
+                <crumbName>rewards</crumbName>
+                <crumbInfo>
+                    <label>Reward Points</label>
+                </crumbInfo>
+            </action>
+        </reference>
+    </rewards_index_index>
+
+    <customer_account>
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/plumrocket/rewards/rewards.css</stylesheet></action>
+        </reference>
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="rewards" ifconfig="rewards/general/enabled"><name>rewardpoints</name><path>rewards/</path><label>Reward points</label></action>
+        </reference>
+    </customer_account>
+
+    <checkout_cart_index>
+        <reference name="head">
+            <action method="addCss" ifconfig="rewards/general/enabled"><stylesheet>css/plumrocket/rewards/rewards.css</stylesheet></action>
+            <action method="addCss" ifconfig="rewards/general/enabled"><stylesheet>css/plumrocket/rewards/ui-lightness/jquery-ui-1.10.3.custom.min.css</stylesheet></action>
+            <!-- <action method="addItem" ifconfig="rewards/general/enabled"><type>skin_js</type><name>js/plumrocket/rewards/jquery-1.6.1.min.js</name></action> -->
+            <action method="addJs" ifconfig="rewards/general/enabled"><name>plumrocket/jquery-1.10.2.min.js</name></action>
+            <action method="addItem" ifconfig="rewards/general/enabled"><type>skin_js</type><name>js/plumrocket/rewards/jquery-ui-1.10.3.custom.min.js</name></action>
+        </reference>
+        <reference name="checkout.cart.coupon">
+                <action method="setTemplate" ifconfig="rewards/general/enabled">
+                    <template>rewards/checkout/cart/coupon.phtml</template>
+                </action>
+        </reference>
+    </checkout_cart_index>
+
+    <checkout_onepage_success translate="label">
+        <reference name="content">
+            <reference name="checkout.success">
+                <action  ifconfig="rewards/general/enabled" method="setTemplate">
+                    <template>rewards/checkout/success.phtml</template>
+                </action>
+            </reference>
+        </reference>
+    </checkout_onepage_success>
+
+</layout>
+

@@ -1,0 +1,51 @@
+<?php
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket_Invitations
+ * @copyright   Copyright (c) 2012 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+?> 
+
+<?php 
+	$_request = $this->getRequest(); 
+	$addressBook = Mage::registry('current_address_book');
+?>
+<div class="in-step2 icons-here">
+<div class="hld">
+<div class="ico-hld icons <?php echo $addressBook->getKey() ?>">(<?php echo $addressBook->getName() ?>)</div>
+<h1>Login to (<?php echo $addressBook->getName() ?>)</h1>
+<form action="<?php echo $this->getUrl('*/*/step3') ?>" method="POST" name="address-book-login-form" id="address-book-login-form" onsubmit="pInvitations.goToStep3(pjQuery_1_10_2(this)); return false;">
+	<table cellspacing='2' cellpadding='0' border='0'  width="100%">
+		<tr>
+			<td><label for='email_box' style="white-space:nowrap;"><?php echo $this->__('User name or Email') ?>:</label></td>
+			<td><input class='thTextbox' type='text' name='email_box' id="email_box" value='<?php echo $_request->getParam('email_box') ?>'/></td>
+		</tr>
+
+		<tr>
+			<td ><label for='password_box'><?php echo $this->__('Password') ?>:</label></td>
+			<td>
+				<input class='thTextbox' type='password' name='password_box' id='password_box' value='<?php echo $_request->getParam('password_box') ?>'/>
+				<input type='hidden' name='provider_box' value='<?php echo $_request->getParam('provider_box') ?>'/>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<button type="button" class="button back-button" name="back" onclick="pInvitations.goToStep1();"><span class="holder"><span><?php echo $this->__('Back') ?></span></span></button>
+				<button type="submit" class="button"  name="import" ><span class="holder"><span><?php echo $this->__('Next') ?></span></span></button>
+			</td>
+		</tr>
+	</table>
+</form>
+</div>
+</div>

@@ -1,0 +1,218 @@
+<?php
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket_Invitations
+ * @copyright   Copyright (c) 2012 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+?> 
+
+<?php 
+$_request = $this->getRequest();
+$contacts = $this->getRequest()->getParam('contacts');
+foreach ($contacts as $email => $contact)
+	if (!preg_match("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^", $email))
+?> 
+
+<div class="in-step3 scroll-area">
+	<h1><?php echo $this->__('Your contacts'); ?></h1>
+
+	<?php if ($contacts) { ?>
+		<table class="table-param">
+			<tr>
+				<td>
+					Find <input id="invite-find" type="text" class="find" value="" />
+				</td>
+				<td class="invite-selectable" >
+					<a id="invite-select-all" href="#">Select All</a> |
+					<a id="invite-unselect-all" href="#">Unselect All</a>
+				</td>
+			</tr>
+		</table>
+	<?php } ?>
+
+	<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+	<div style="position:static;">
+		<?php if (count($contacts) == 0) { ?>
+			<?php echo $this->__('You do not have any contacts in your address book.') ?><br/>
+			<button  type="button" class="button"  name='import' onclick="pInvitations.goToStep1();"><span><span><?php echo $this->__('Back') ?></span></span></button>
+		<?php } else { ?>
+		
+		<form action="" method="POST" name="openinviter" >
+
+			<div style="height:350px; overflow-y: scroll;" id="openinviter-list" >
+				<?php /* ?>
+				<table cellspacing='0' cellpadding='0' border='0' width='95%'>
+					<thead>
+					<tr>
+						<th class="col-check"><input type='checkbox' class="toggle-all" name='toggle-all' title='Select/Deselect all' checked value=''></td>
+						<th><?php echo $this->__('Name') ?></td>
+						<th><?php echo $this->__('E-mail') ?></td>
+					</tr>
+					</thead>
+					</tbody>
+					<?php
+					$counter = 0;
+					foreach ($contacts as $email => $name) {
+						$counter++;
+					?>
+					<tr>
+						<td class="col-check" >
+							<input name='check_<?php echo $counter ?>' value='<?php echo htmlspecialchars($email).':'.htmlspecialchars($name) ?>' type='checkbox' checked />
+						</td>
+						<td style="white-space: nowrap;">
+							<div class="icon"></span>
+							<?php
+							if (ord($name{1}) == 227)
+								$name = @iconv('windows-1251', 'UTF-8', $name);
+							
+							$utf8Nama = utf8_decode($name);
+							if (strpos($utf8Nama,'?') !== 0)
+								$name = $utf8Nama; 
+								
+							echo htmlspecialchars($name);
+							?>
+						</td>
+						<td style="white-space: nowrap;"><?php echo htmlspecialchars($email) ?></td>
+					</tr>
+					<?php } ?>
+					</tbody>
+				</table>
+				<?php */ ?>
+
+
+				<?php
+				$counter = 0;
+				$a = 0;
+				foreach ($contacts as $email => $contact) {
+					$counter++;
+				?>
+					<div class="list-row-td">
+						<table class="list-item">
+							<tr>
+								<td class="col-1">
+									<input type='checkbox' name='check_<?php echo $counter ?>' value='<?php echo $this->escapeHtml($contact['email']).':'.$this->escapeHtml($contact['name']) ?>' checked="checked" />
+								</td>
+								<td class="col-2">
+									<?php if(!empty($contact['image'])) : ?>
+										<div class="photo"><img src="<?php echo $this->escapeHtml(Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) .'frontend/base/default/images/plumrocket/invitations/bg-white80.png'); ?>" data-src="<?php echo $contact['image']; ?>" /></div>
+									<?php else: ?>
+										<div class="icon"></div>
+									<?php endif; ?>
+								</td>
+								<td class="col-3">
+									<div class="user-data">
+									<?php
+									if (!empty($contact['name']) && ord($contact['name']{1}) == 227)
+										$name = @iconv('windows-1251', 'UTF-8', $contact['name']);
+									
+									$utf8Nama = utf8_decode($contact['name']);
+									if (strpos($utf8Nama,'?') !== 0)
+										$contact['name'] = $utf8Nama;
+										
+									echo '<span class="name">'.$this->escapeHtml($contact['name']).'</span>';
+									if ( $contact['name'] != '' ) echo '<br />';
+									?>
+									<?php 
+									if ( strlen($contact['email']) > 27 ) echo '<span class="email md" title="'.$this->escapeHtml($contact['email']).'">'.$this->escapeHtml(substr($contact['email'], 0, 25)).'...</span><span class="email xs">'.$this->escapeHtml($contact['email']).'</span>';
+									else echo $this->escapeHtml($contact['email']); ?>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+				<?php 
+					//echo ($a%2)? '</tr>' : ''; $a++; 
+				?>
+
+				<?php  } ?>
+			</div>
+			<input type='hidden' name='step' value='send_invites'>
+			<input type='hidden' name='provider_box' value='<?php echo htmlspecialchars($_request->getParam('provider_box')) ?>'>
+			<input type='hidden' name='email_box' value='<?php echo htmlspecialchars($_request->getParam('email_box')) ?>'>
+			<input type='hidden' name='oi_session_id' value='<?php echo htmlspecialchars($_request->getParam('oi_session_id')) ?>'>
+			<br />
+			<button  type="button" class="button"  name='import' onclick="pInvitations.goToStep2('<?php echo $_request->getParam('provider_box'); ?>');"><span><span><?php echo $this->__('Back') ?></span></span></button>
+			<button class="button" type="buttom" onclick="add(); return false;" name='import'><span><span><?php echo $this->__('Add Selected Contacts') ?></span></span></button>
+		</form>
+	</div>
+</div>
+
+
+<script type='text/javascript'>
+
+var interval = null;
+
+pjQuery_1_10_2(document).ready(function() {
+	
+	pjQuery_1_10_2('#invite-find').on('change keyup keypress onkeydown onpaste oncut', function() {
+		var $find = pjQuery_1_10_2(this);
+		pjQuery_1_10_2('#openinviter-list .list-row-td').each(function(n, item) {
+			var $item = pjQuery_1_10_2(item);
+			var text = $item.find('td.col-3').text().trim();
+			var find = $find.val();
+			if(text.match(new RegExp(find, 'i'))) {
+				$item.show();
+			}else{
+				$item.hide();
+			}
+			
+		});
+	});
+
+	pjQuery_1_10_2('#invite-select-all').click(function() {
+		pjQuery_1_10_2('#openinviter-list .list-item td.col-1 input:checkbox:visible').prop('checked', true);
+		return false;
+	});
+
+	pjQuery_1_10_2('#invite-unselect-all').click(function() {
+		pjQuery_1_10_2('#openinviter-list .list-item td.col-1 input:visible').removeAttr('checked');
+		return false;
+	});
+
+	/*pjQuery_1_10_2('#openinviter-list').on('click', '.list-row-td', function() {
+		var $checkbox = pjQuery_1_10_2('td.col-1 input:checkbox', this);
+		if($checkbox.not(':checked')) {
+			$checkbox.prop('checked', true);
+		}else{
+			$checkbox.removeAttr('checked');
+		}
+	});*/
+
+	var timeOut = 0;
+	pjQuery_1_10_2('img[data-src]').each(function(n, item) {
+		var $item = pjQuery_1_10_2(item);
+		setTimeout(function() {
+			$item.attr('src', $item.data('src')).removeAttr('data-src');
+		}, timeOut);
+		timeOut += 300;
+	});
+});
+
+function add()
+{
+	var form = document.forms.openinviter, i = 0;
+	var result = '';
+	for(i = 0; i < form.length; i++)
+	{
+		if (form[i].type == 'checkbox' && form[i].checked && form[i].value)
+		{
+			var v = form[i].value.split(':');
+			if (v.length < 2)
+				v[1] = v[0];
+				pInvitations.addToContactList(v[0], v[1], '<?php echo $_request->getParam('addressBookId') ?>');		
+		}
+	}
+	pjQuery_1_10_2.fancybox.close();
+}
+</script>
+<?php } ?>

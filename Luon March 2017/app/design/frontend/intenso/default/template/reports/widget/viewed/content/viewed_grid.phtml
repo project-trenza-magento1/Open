@@ -1,0 +1,86 @@
+<?php
+/**
+ * Intenso Premium Theme
+ *
+ * @category    design
+ * @package     intenso_default
+ * @copyright   Copyright (c) 2014-2016 Itactica (http://www.itactica.com)
+ * @license     http://getintenso.com/license
+ */
+?>
+<?php
+/**
+ * @see Mage_Reports_Block_Product_Viewed
+ */
+?>
+<?php $helper = Mage::helper('itactica_intenso'); ?>
+<?php if ($_products = $this->getRecentlyViewedProducts()): ?>
+<section class="row featured-slider featured-slider-section recently-viewed<?php if($helper->getRecentlyViewedDisplayType() == 0): ?> grid-type<?php endif; ?>" data-options="animation_speed: 300; min_item_width: 220; swipe: 1">
+    <h3><?php echo $this->__('Recently Viewed') ?></h3>
+    <ol class="clearfix">
+        <?php foreach ($_products as $_product): ?>
+        <li class="item">
+            <div class="item-content">
+                <div class="item-images<?php if ($helper->getRecentlyViewedHasPadding()): ?> flush<?php endif; ?>">
+                    <?php if (Mage::getStoreConfig('intenso/catalog/lazy_loading')): ?>
+                        <a class="product-image" href="<?php echo $_product->getProductUrl(); ?>" <?php echo $this->getPictureStyleForRecentlyViewed();?>>
+                            <img id ="product-collection-image-<?php echo $_product->getId(); ?>" class="item-image" alt="<?php echo $this->stripTags($_product->getName(), null, true); ?>" src="<?php echo $this->getSkinUrl('images/clear.png'); ?>" data-echo="<?php echo $helper->getRecentlyViewedProductImage($_product); ?>" width="430" height="<?php echo Mage::helper('itactica_intenso')->getRecentlyViewedImageHeight(); ?>">
+                        </a>
+                    <?php else: ?>
+                        <a class="product-image" href="<?php echo $_product->getProductUrl(); ?>">
+                            <img id ="product-collection-image-<?php echo $_product->getId(); ?>" class="item-image" src="<?php echo $this->getProductImage($_product); ?>" alt="<?php echo $this->stripTags($_product->getName(), null, true); ?>" width="430" height="<?php echo $helper->getRecentlyViewedImageHeight(); ?>">
+                        </a>
+                    <?php endif; ?>
+
+                    <div class="product-label-placeholder" data-productid="<?php echo $_product->getId(); ?>" data-labelurl="<?php echo Mage::getBaseUrl(); ?>itactica-productlabel"></div>
+
+                    <?php if (Mage::helper('itactica_quickview')->isEnabled()): ?>
+                        <a href="<?php echo $this->getUrl('itactica_quickview/product/view/id/' . $_product->getId()) ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>" class="quickview-button button"><?php echo $this->__('Quick View') ?></a>
+                    <?php endif; ?>
+                </div>
+                <div class="item-info">
+                    <h6 class="item-title">
+                        <a href="<?php echo $_product->getProductUrl(); ?>" class="truncate"><span><?php echo $this->stripTags($_product->getName(), null, true); ?></span></a>
+                    </h6>
+                    <?php if($helper->showRatingInRecentlyViewed()): ?>
+                        <?php $reviewHelper = $this->getLayout()->createBlock('review/helper'); ?>
+                        <?php echo $reviewHelper->getSummaryHtml($_product, 'short', false); ?>
+                    <?php endif; ?>
+                    <?php if($helper->showPriceTagInRecentlyViewed()): ?>
+                        <?php echo $this->getPriceHtml($_product, true); ?>
+                    <?php endif; ?>
+                    <?php
+                    if ($helper->isConfigSwatchesEnabled()) {
+                        echo $this->getLayout()->createBlock('core/template')->setTemplate('configurableswatches/catalog/product/list/swatches.phtml')->setProduct($_product)->toHtml();
+                    }
+                    ?>
+                    <?php if (Mage::helper('itactica_quickview')->isEnabled()): ?>
+                        <a href="<?php echo $this->getUrl('itactica_quickview/product/view/id/' . $_product->getId()) ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>" class="quickview-button button"><?php echo $this->__('Quick View') ?></a>
+                    <?php endif; ?>
+                </div>
+                <?php if($helper->showAddToCartInRecentlyViewed() || $helper->showCompareInRecentlyViewed() || $helper->showWishlistInRecentlyViewed()): ?>
+                    <div class="actions clearfix">
+                        <?php if(!$_product->canConfigure() && $_product->isSaleable() && $helper->showAddToCartInRecentlyViewed()): ?>
+                            <button class="btn-cart" title="<?php echo $this->__('Add to Cart') ?>" type="button" onclick="setLocation('<?php echo $this->helper('checkout/cart')->getAddUrl($_product) ?>')"><?php echo $this->__('Add to Cart') ?></button>
+                        <?php elseif($_product->getStockItem() && $_product->getStockItem()->getIsInStock() && $helper->showAddToCartInRecentlyViewed()): ?>
+                            <button type="button" title="<?php echo $this->__('View Details') ?>" class="button btn-cart preview" onclick="setLocation('<?php echo $_product->getProductUrl() ?>')"><span><span><?php echo $this->__('View Details') ?></span></span></button>
+                        <?php elseif($helper->showAddToCartInRecentlyViewed()): ?>
+                            <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                        <?php endif; ?>
+                        <ul class="add-to-links">
+                            <?php if($this->helper('wishlist')->isAllow() && $helper->showWishlistInRecentlyViewed()): ?>
+                                <li><a class="link-wishlist" href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" title="<?php echo $this->__('Add to Wishlist') ?>"><?php echo $this->__('Add to Wishlist') ?></a></li>
+                            <?php endif; ?>
+                            <?php $_compareUrl=$this->helper('catalog/product_compare')->getAddUrl($_product); ?>
+                            <?php if($_compareUrl && $helper->showCompareInRecentlyViewed()): ?>
+                                <li><a id="compare-id-<?php echo $_product->getId(); ?>" class="link-compare" href="<?php echo $_compareUrl ?>" title="<?php echo $this->__('Add to Compare') ?>"><?php echo $this->__('Add to Compare') ?></a></li>
+                            <?php endif; ?>
+                        </ul>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </li>
+        <?php endforeach; ?>
+    </ol>
+</section>
+<?php endif; ?>

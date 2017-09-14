@@ -1,0 +1,28 @@
+<script type="text/javascript">
+    //<![CDATA[
+    function export_catalog(){
+        new Ajax.Request('<?php echo $this->getAjaxExportcatalogUrl() ?>', {
+            method:     'get',
+            parameters: {
+                websiteCode: '<?php echo $this->getWebsiteCode() ?>'
+            },
+            onSuccess: function(transport){
+                if (transport.responseText){
+                    
+                }
+                    window.location.reload();
+            }
+        });
+    }
+    
+    //On document load
+    document.observe("dom:loaded", function() {
+        // Disable last export field
+        if($('remmote_facebookpixelremarketing_product_catalogs_time_lastexport')){
+            $('remmote_facebookpixelremarketing_product_catalogs_time_lastexport').setAttribute('disabled','disabled');
+        }
+    });
+    //]]>    
+</script>
+ 
+<?php echo $this->getButtonHtml() ?>

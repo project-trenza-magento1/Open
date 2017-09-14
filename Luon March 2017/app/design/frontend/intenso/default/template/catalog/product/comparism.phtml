@@ -1,0 +1,36 @@
+
+    <div class="product-collateral-wrapper">
+        <?php $_price_cmp = Mage::helper('pricecomparison')->priceCmpAll(); ?>
+        <?php if($_price_cmp): ?>
+            <div class="product-collateral pricecmp clearfix row">
+               
+               <table id='compprice' class='data'> <thead> <tr class='filter'><th>Vertailtu tuote</th><th><span class="has-tip tip-top" title="Tuotteen keskihinta on tarkistettu kahdesta suuresta suomalaisesta verkkokaupasta." data-tooltip>Tuotteen keskihinta</span></th><th>Luontaistukun tuote</th><th><span class="has-tip tip-top" title="Luontaistukun vertailuhinta on saatu muuttamalla tuote vastaavaan pakkauskokoon ja  vaikuttavan aineen vahvuuteen. T&auml;st&auml; syyst&auml; vertailuhinta voi olla eri hinta kuin tuotteen varsinainen myyntihinta" data-tooltip>Vastaava hintamme</span> </th><th><span class="has-tip tip-top" title="Hintaero on laskettu muuttaen tuotteet samanvahvuisiksi ja samankokoisiin myyntipakkauksiin." data-tooltip>Hintaero</span></th></tr></thead> <tbody>
+                <?php 
+                   
+                    
+                     foreach($_price_cmp as $_data):                                
+                        $html .= "<tr><td>" . $_data['comp_name'] . "</td><td>" . Mage::helper('core')->currency($_data['comp_price'], true, false) . "</td><td>" . $_data['product_name'] . "</td><td>" . Mage::helper('core')->currency($_data['product_price'] * $_data['mult']  , true, false) . "</td><td>" . $_data['price_diff'] ."%</td></tr> "; 
+                     endforeach;
+                     
+                    
+                    echo $html;
+                
+                 ?>
+                 </tbody></table>
+            </div>
+        <?php endif; ?>
+    </div>
+
+<script type="text/javascript">
+
+jQuery(document).ready( function () {
+    jQuery('#compprice').DataTable({
+        paging: true,
+        "pageLength":10,
+        "autoWidth": true,
+         "lengthChange": false,
+         "info": false
+    });
+    
+} );
+</script>

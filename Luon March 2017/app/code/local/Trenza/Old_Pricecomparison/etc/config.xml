@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Trenza_Pricecomparison>
+			<version>0.1.0</version>
+		</Trenza_Pricecomparison>
+	</modules>
+ 
+	<global>
+	
+		<helpers>
+			<pricecomparison>
+				<class>Trenza_Pricecomparison_Helper</class>
+			</pricecomparison>
+			
+		</helpers>
+	
+		<blocks>
+			<pricecomparison>
+				<class>Trenza_Pricecomparison_Block</class>
+			</pricecomparison>
+		</blocks>
+		<models>
+			<pricecomparison>
+				<class>Trenza_Pricecomparison_Model</class>
+				<resourceModel>payouts_mysql4</resourceModel>
+			</pricecomparison>
+			
+			<pricecomparison_mysql4>
+				<class>Trenza_Pricecomparison_Model_Mysql4</class>
+				<entities>  
+					<pricecomparison>
+						<table>pricecomparison</table>
+					</pricecomparison>
+				</entities>
+			</pricecomparison_mysql4>
+			
+			
+		</models>
+		
+		<resources>
+			<pricecomparison_setup>
+				<setup>
+					<module>Trenza_Pricecomparison</module>
+				</setup>
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</pricecomparison_setup>
+			<pricecomparison_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+		  </pricecomparison_write>
+		  <pricecomparison_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+		  </pricecomparison_read>
+		</resources>
+		
+	</global>
+	
+	
+	<admin>
+		<routers>
+			<pricecomparison>
+				<use>admin</use>
+				<args>
+					<module>Trenza_Pricecomparison</module>
+					<frontName>pricecomparison</frontName>
+				</args>
+			</pricecomparison>
+		</routers>
+	</admin>
+	
+	
+	
+	<adminhtml>
+	
+		
+		<menu>
+			<catalog>
+				<children>
+					<pricecomparison module="pricecomparison">
+						<title>Price Comparison</title>
+						<sort_order>71</sort_order>               
+						<action>pricecomparison/adminhtml_pricecomparison</action>
+					</pricecomparison>
+				</children>
+			</catalog>
+		</menu>
+	
+	
+	
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<catalog>
+						<children>
+							<pricecomparison module="pricecomparison">
+								<title>Price Comparison</title>
+								<sort_order>71</sort_order>               
+								<action>pricecomparison/adminhtml_pricecomparison</action>
+							</pricecomparison>
+						</children>
+					</catalog>
+				</admin>
+			</resources>   
+		</acl>
+
+
+
+		<layout>
+			<updates>
+				<pricecomparison>
+					<file>pricecomparison.xml</file>
+				</pricecomparison>
+			</updates>
+		</layout>
+		 <events>
+			 <catalog_product_save_after>
+				 <observers>
+					 <pricecomparison_save_product_data>
+						 <type>singleton</type>
+						 <class>pricecomparison/observer</class>
+						 <method>savePricecomparison</method>
+					 </pricecomparison_save_product_data>
+				 </observers>
+			 </catalog_product_save_after>
+		 </events>
+	</adminhtml>
+</config>

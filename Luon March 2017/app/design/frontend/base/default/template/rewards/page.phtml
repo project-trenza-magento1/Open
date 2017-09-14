@@ -1,0 +1,48 @@
+<?php
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket_Reward_Points
+ * @copyright   Copyright (c) 2012 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+?>
+
+<?php
+	$customerPoints = Mage::getModel('rewards/points')->getByCustomer(Mage::helper('rewards')->getCurrentCustomerId());
+	$list = $this->getLayout()->createBlock('rewards/history');
+?>
+<div id="rewards_page">
+<div class="page-title">
+    <h1><?php echo $this->__('Reward points') ?></h1>
+</div>
+<ul class="reward-list">
+	<li>
+		<strong><?php echo $this->__('Available points:') ?></strong> <?php echo $customerPoints->getAvailable() ?>
+		<?php
+			if ($customerPoints->getAvailable() > 0) {
+				foreach($list->getList() as $item) {
+					if ($item->getPoints() >= 0 && $item->getExpireAt() != '0000-00-00'){
+					?>
+						<em> (<?php echo $this->__('Expiry Date') ?>: <?php echo date('M d, Y',strtotime($item->getExpireAt())) ?>)</em>
+					<?php
+						break;
+					}
+				}
+			}
+		?>
+	</li>
+	<li><strong><?php echo $this->__('Total Accumulated points:') ?></strong> <?php echo $customerPoints->getAccumulated() ?></li> 
+	<li><strong><?php echo $this->__('Spent points:') ?></strong> <?php echo $customerPoints->getSpent() ?></li>
+</ul>
+<br/>
+<?php echo $list->toHtml(); ?>
+</div>

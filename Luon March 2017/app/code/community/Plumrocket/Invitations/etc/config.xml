@@ -1,0 +1,307 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Plumrocket_Invitations>
+			<wiki>http://wiki.plumrocket.com/wiki/Magento_Invitations_Extension_v1.x</wiki>
+			<version>1.5.2</version>
+		</Plumrocket_Invitations>
+	</modules>
+	<frontend>
+		<routers>
+			<invitations>
+				<use>standard</use>
+				<args>
+					<module>Plumrocket_Invitations</module>
+					<frontName>invitations</frontName>
+				</args>
+			</invitations>
+		</routers>
+		<layout>
+			<updates>
+				<invitations>
+					<file>invitations.xml</file>
+				</invitations>
+			</updates>
+		</layout>
+		<translate>
+            <modules>
+                <Plumrocket_Invitations>
+                    <files>
+                        <default>Plumrocket_Invitations.csv</default>
+                    </files>
+                </Plumrocket_Invitations>
+            </modules>
+        </translate>
+	</frontend>
+
+	<global>
+		<helpers>
+			<invitations>
+				<class>Plumrocket_Invitations_Helper</class>
+			</invitations>
+		</helpers>
+		<blocks>
+			<invitations>
+				<class>Plumrocket_Invitations_Block</class>
+			</invitations>
+		</blocks>
+		<models>
+            <invitations>
+                <class>Plumrocket_Invitations_Model</class>
+                <resourceModel>invitations_mysql4</resourceModel>
+            </invitations>
+            <sendfriend>
+                <rewrite>
+                    <sendfriend>Plumrocket_Invitations_Model_Sendfriend</sendfriend>
+                </rewrite>
+            </sendfriend>
+            <invitations_mysql4>
+                <class>Plumrocket_Invitations_Model_Mysql4</class>
+                <entities>
+                    <invitations>
+                        <table>invitations_entity</table>
+                    </invitations>
+                    <guest>
+                        <table>invitations_guest</table>
+                    </guest>
+					<addressbooks>
+                        <table>invitations_addressbooks</table>
+                    </addressbooks>
+                </entities>
+            </invitations_mysql4>
+        </models>
+		<events>
+			<controller_front_init_before>
+				<observers>
+					<invitations_controller_front_init_before>
+						<type>singleton</type>
+						<class>invitations/observer</class>
+						<method>controllerFrontInitBefore</method>
+					</invitations_controller_front_init_before>
+				</observers>
+			</controller_front_init_before>
+			<customer_register_success>
+				<observers>
+					<invitations_customer_register_success>
+						<type>singleton</type>
+						<class>invitations/observer</class>
+						<method>customerRegisterSuccess</method>
+					</invitations_customer_register_success>
+				</observers>
+			</customer_register_success>
+			<sales_order_place_after>
+				<observers>
+					<invitations_sales_order_place_after>
+						<type>singleton</type>
+						<class>invitations/observer</class>
+						<method>salesOrderPlaceAfter</method>
+					</invitations_sales_order_place_after>
+				</observers>
+			</sales_order_place_after>
+
+			<!--
+			 <sales_order_save_commit_after>
+                 <observers>
+                     <invitations_sales_order_save_commit_after>
+                         <type>singleton</type>
+                         <class>Plumrocket_Invitations_Model_Observer</class>
+                         <method>salesOrderSaveCommitAfter</method>
+                     </invitations_sales_order_save_commit_after>
+                 </observers>
+             </sales_order_save_commit_after>
+         	-->
+         	<sales_order_invoice_register>
+                 <observers>
+                     <invitations_sales_order_invoice_register>
+                         <type>singleton</type>
+                         <class>invitations/observer</class>
+                         <method>salesOrderInvoiceRegister</method>
+                     </invitations_sales_order_invoice_register>
+                 </observers>
+             </sales_order_invoice_register>
+             <controller_front_init_routers>
+                <observers>
+                    <invitations_controller_front_init_routers>
+                        <class>Plumrocket_Invitations_Controller_Router</class>
+                        <method>initControllerRouters</method>
+                    </invitations_controller_front_init_routers>
+                </observers>
+            </controller_front_init_routers>
+		</events>
+		<resources>
+            <invitations_setup>
+                <setup>
+                    <module>Plumrocket_Invitations</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </invitations_setup>
+            <invitations_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </invitations_write>
+            <invitations_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </invitations_read>
+        </resources>
+		<template>
+            <email>
+                <invitations_email_template translate="label"	module="invitations">
+                    <label>Invitation email</label>
+                    <file>plumrocket/invitations/invite.html</file>
+                    <type>html</type>
+                </invitations_email_template>
+                <invitations_promo_page_guest_verification_email_template translate="label"	module="invitations">
+                    <label>Guest verification email template</label>
+                    <file>plumrocket/invitations/guest_verification.html</file>
+                    <type>html</type>
+                </invitations_promo_page_guest_verification_email_template>
+
+                <invitations_invitation_confirmation_email_template translate="label"	module="invitations">
+                    <label>Accept invitation notification email template</label>
+                    <file>plumrocket/invitations/invitation_confirmation.html</file>
+                    <type>html</type>
+                </invitations_invitation_confirmation_email_template>
+            </email>
+        </template>
+   </global>
+   	<default>
+        <invitations>
+            <general>
+				<enabled>0</enabled>
+            </general>
+            <invitee>
+				<edit_invitee_text>0</edit_invitee_text>
+				<show_referral_link>1</show_referral_link>
+				<referral_link>/invite/</referral_link>
+				<invitations_via_shares>1</invitations_via_shares>
+			</invitee>
+            <email>
+            	<email_from_store>1</email_from_store>
+				<template>invitations_email_template</template>
+				<text><![CDATA[Hi!
+
+I am currently shopping at Private Sales Store, they have really amazing discounts everyday on the world's top brands. So, please accept my invitation to join Private Sales Store and take advantage of their incredible discounts.It's Members-only, and I'm inviting you.
+
+Use the following link to accept my invitation: {{referral_link}}
+
+Best regards,
+{{customer_name}}
+]]></text>
+				<subject><![CDATA[Invitation from {{customer_name}}!]]></subject>
+            </email>
+            <promo_page>
+				<enabled>0</enabled>
+				<title>Invite Friends</title>
+				<meta_title>Invite Friends</meta_title>
+            </promo_page>
+        </invitations>
+        <rewards>
+            <invitations_credits>
+				<credits>25</credits>
+				<max_days>0</max_days>
+				<min_sub_total>50</min_sub_total>
+            </invitations_credits>
+        </rewards>
+    </default>
+	<admin>
+		<routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<Plumrocket_Invitations_Adminhtml after="Mage_Adminhtml">Plumrocket_Invitations_Adminhtml</Plumrocket_Invitations_Adminhtml>
+					</modules>
+				</args>
+			</adminhtml>
+		</routers>
+	</admin>
+	<adminhtml>
+		<menu>
+			<plumrocket>
+				<title>Plumrocket</title>
+				<sort_order>80</sort_order>
+				<children>
+					<invitations>
+						<title>Invitations</title>
+						<sort_order>250</sort_order>
+						<children>
+							<invitations>
+								<title>Manage Customers Invitations</title>
+								<sort_order>1</sort_order>
+								<action>adminhtml/invitations_index</action>
+							</invitations>
+							<address_books>
+								<title>Manage Address Books</title>
+								<sort_order>2</sort_order>
+								<action>adminhtml/invitations_addressbooks</action>
+							</address_books>
+							<config>
+								<title>Configuration</title>
+								<sort_order>3</sort_order>
+								<action>adminhtml/system_config/edit/section/invitations</action>
+							</config>
+						</children>
+					</invitations>
+				</children>
+			</plumrocket>
+		</menu>
+		<acl>
+			<resources>
+				<all>
+				    <title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<plumrocket>
+							<title>Plumrocket</title>
+							<sort_order>80</sort_order>
+							<children>
+								<invitations>
+									<title>Invitations</title>
+									<sort_order>250</sort_order>
+									<children>
+										<invitations>
+											<title>Manage Customers Invitations</title>
+											<sort_order>1</sort_order>
+										</invitations>
+										<address_books>
+											<title>Manage Address Books</title>
+											<sort_order>2</sort_order>
+										</address_books>
+										<config>
+											<title>Configuration</title>
+											<sort_order>3</sort_order>
+										</config>
+									</children>
+								</invitations>
+							</children>
+						</plumrocket>
+						<system>
+							<children>
+								<config>
+									<children>
+										<invitations translate="title" module="invitations">
+                                            <title>Plumrocket Invitations Settings</title>
+                                        </invitations>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+
+		<layout>
+			<updates>
+				<invitations>
+				    <file>invitations.xml</file>
+				</invitations>
+			</updates>
+		</layout>
+	</adminhtml>
+</config>

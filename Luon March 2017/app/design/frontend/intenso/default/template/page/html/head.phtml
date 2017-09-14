@@ -1,0 +1,53 @@
+<?php
+/**
+ * Intenso Premium Theme
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2014 Itactica (http://www.itactica.com)
+ * @license     http://getintenso.com/license/regular
+ */
+/**
+ * head.phtml
+ */
+?>
+<meta name="utf" charset="utf-8" content="utf"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title><?php echo $this->getTitle() ?></title>
+<meta name="Content-Type" http-equiv="Content-Type" content="<?php echo $this->getContentType() ?>" />
+<meta name="description" content="<?php echo htmlspecialchars($this->getDescription()) ?>" />
+<meta name="keywords" content="<?php echo htmlspecialchars($this->getKeywords()) ?>" />
+<meta name="robots" content="<?php echo htmlspecialchars($this->getRobots()) ?>" />
+<link rel="icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+<link rel="shortcut icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+
+<?php //echo Mage::helper('itactica_intenso')->getGoogleFontsScript() 
+//$string = Mage::helper('itactica_intenso')->getGoogleFontsScript();
+echo Mage::helper('itactica_intenso')->getGoogleFontsScript() 
+//echo str_replace("/>", "async /> ", $string);
+?>
+<?php /*
+<noscript id="deferred-styles">
+   <?php echo Mage::helper('itactica_intenso')->getGoogleFontsScript(); ?>
+</noscript>
+*/?>
+
+<script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+</script>
+	
+<?php echo $this->getCssJsHtml() ?>
+<?php echo $this->getChildHtml() ?>
+<?php echo $this->helper('core/js')->getTranslatorScript() ?>
+<?php echo $this->getIncludes() ?>
+

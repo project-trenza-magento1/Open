@@ -1,0 +1,42 @@
+<div class="grid">
+<?php
+    $table_name = "pricecomparison";
+    $_write = Mage::getSingleton('core/resource')->getConnection('core_write');
+    $_read = Mage::getSingleton('core/resource')->getConnection('core_read');
+    
+    $_product = Mage::registry('current_product');
+    
+    $_product_name = $_product->getName();
+    $_product_price = round($_product->getFinalPrice() , 2);
+    
+    
+    $_sql = "SELECT * FROM $table_name WHERE cp_id = " . $_product->getId();
+    $_data_list = $_read->fetchAll($_sql);
+    
+    if($_data_list):
+    
+        echo "<h3>Hintavertailu</h3>";
+    
+    
+        echo "<table class='data'><tr class='filter'><th>Vertailtu tuote</th><th>Tuotteen keskihinta</th><th>Luontaistukun vertailuhinta</th><th>Hintaero</th></tr>";
+    
+        //echo "<table class='data'><tr class='filter'><th>Product Name</th><th>Product Price</th><th>Compititor Product Name</th><th>Compititor Product Price</th><th>Price Diff</th></tr>";
+    
+        foreach($_data_list as $_data):
+            $_price_diff = round($_data['comp_price'] - ($_product_price * $_data['mult']) , 2);
+                       
+            echo "<tr><td>" . $_data['comp_name'] . "</td><td>" . Mage::helper('core')->currency($_data['comp_price'], true, false) . "</td><td>" . Mage::helper('core')->currency($_product_price, true, false) . "</td><td>" . $_price_diff . "</td><tr>";                       
+                       
+            //echo "<tr><td>" . $_product_name . "</td><td>" . Mage::helper('core')->currency($_product_price, true, false) . "</td><td>" . $_data['comp_name'] . "</td><td>" . Mage::helper('core')->currency($_data['comp_price'], true, false) . "</td><td>" . $_price_diff . "</td><tr>"; 
+        endforeach;
+        
+        echo "</table>";
+    
+    else:
+        echo 'N/A';    
+    endif;
+    
+    
+?>
+
+</div>

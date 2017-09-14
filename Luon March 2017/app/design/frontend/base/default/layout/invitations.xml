@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+    <default>
+        <reference name="top.links">
+            <action method="addLink" translate="label title" module="invitations" ifconfig="invitations/general/enabled"><label>Invite Friends</label><url helper="invitations/getInvitationsTopLinkUrl"/><title>Invite Friends</title><prepare/><urlParams/><position>90</position></action>
+        </reference>
+
+        <reference name="customer_account_navigation_top">
+            <action method="addLink" translate="label" module="invitations" ifconfig="invitations/general/enabled"><name>referral</name><path>invitations/</path><label>Invite Friends</label></action>
+        </reference>
+    </default>
+
+    <invitations_default>
+        <reference name="head">
+            <action method="addJs" ifconfig="invitations/general/enabled"><script>plumrocket/jquery-1.10.2.min.js</script></action>
+            <action method="addCss" ifconfig="invitations/general/enabled"><stylesheet>css/plumrocket/invitations/invitations.css</stylesheet></action>
+
+            <action method="addItem" ifconfig="invitations/general/enabled"><type>skin_js</type><name>js/plumrocket/invitations/fancybox/jquery.fancybox.pack.js</name></action>
+            <action method="addCss" ifconfig="invitations/general/enabled"><stylesheet>js/plumrocket/invitations/fancybox/jquery.fancybox.css</stylesheet></action>
+
+            <action method="addItem" ifconfig="invitations/general/enabled"><type>skin_js</type><name>js/plumrocket/invitations/jquery.tagsinput.min.js</name></action>
+            <action method="addCss" ifconfig="invitations/general/enabled"><stylesheet>css/plumrocket/invitations/jquery.tagsinput.css</stylesheet></action>
+
+            <action method="addItem" ifconfig="invitations/general/enabled"><type>skin_js</type><name>js/plumrocket/invitations/invitations.js</name></action>
+
+            <block type="core/template" name="invitations_page_head" template="invitations/page/head.phtml" />
+        </reference>
+    </invitations_default>
+
+    <invitations_index_index>
+        <update handle="invitations_default" />
+        <update handle="customer_account"/>
+        <reference name="my.account.wrapper">
+            <block type="invitations/page" name="points_list" template="invitations/page.phtml"/>
+        </reference>
+    </invitations_index_index>
+
+    <invitations_index_accept>
+        <block type="invitations/page" name="root"  output="toHtml" template="invitations/accept.phtml"/>
+    </invitations_index_accept>
+
+    <invitations_promo_index>
+        <update handle="invitations_default" />
+        <update handle="customer_account"/>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="my.account.wrapper">
+            <block type="invitations/page" name="points_list" template="invitations/promo/page.phtml"/>
+        </reference>
+    </invitations_promo_index>
+
+    <customer_account>
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/plumrocket/invitations/invitations.css</stylesheet></action>
+            <!-- <action method="addItem"><type>skin_css</type><name>css/plumrocket/invitations/invitations-ie.css</name><params/><if>lt IE 8</if></action> -->
+        </reference>
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="invitations" ifconfig="invitations/general/enabled"><name>referral</name><path>invitations/</path><label>Invite Friends</label></action>
+        </reference>
+    </customer_account>
+
+    <catalog_product_view>
+        <reference name="product.info">
+            <reference name="product.info.sharing">
+                <action method="setTemplate" ifconfig="invitations/invitee/invitations_via_shares"><template>invitations/product/view/sharing.phtml</template></action>
+            </reference>
+        </reference>
+    </catalog_product_view>
+</layout>

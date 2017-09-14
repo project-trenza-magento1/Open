@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @extension   Remmote_Facebookpixelremarketing
+ * @author      Remmote    
+ * @copyright   2016 - Remmote.com
+ * @descripion  Layout file
+ */
+-->
+<layout version="1.0.0">
+	<default>
+		<reference name="head">
+        	<block type="remmote_facebookpixelremarketing/code" name="remmote_facebookpixelremarketing" as="remmote_facebookpixelremarketing" template="remmote/facebookpixelremarketing/code.phtml"/>
+     	</reference>
+	</default>
+</layout>
